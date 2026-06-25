@@ -6,7 +6,6 @@ import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { formatUsd } from "@/lib/utils";
 import { PLATFORM_STATS } from "@/lib/mock";
 import { Rocket, Compass, Zap } from "lucide-react";
-import { ShaderBackground } from "./ShaderBackground";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -21,10 +20,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden grid-bg">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-bg" />
-      {/* Live nebula (desktop, motion-allowed only) sitting under a legibility overlay */}
-      <ShaderBackground />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(90%_70%_at_50%_6%,transparent,transparent_45%,rgba(8,7,10,0.32)),linear-gradient(to_bottom,transparent_55%,var(--bg))]" />
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-24 text-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-24 text-center">
         <motion.div
           custom={0}
           variants={fadeUp}
@@ -43,7 +39,7 @@ export function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] [text-shadow:0_2px_30px_rgba(8,7,10,0.85)]"
+          className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]"
         >
           Launch a token.
           <br />
@@ -55,7 +51,7 @@ export function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="mt-6 text-lg text-muted max-w-2xl mx-auto [text-shadow:0_1px_16px_rgba(8,7,10,0.8)]"
+          className="mt-6 text-lg text-muted max-w-2xl mx-auto"
         >
           WAGMII is a permissionless launchpad where every buy and sell feeds a shared
           treasury — and that treasury pays back to the people who hold. No presale, no
