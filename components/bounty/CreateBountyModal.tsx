@@ -48,7 +48,7 @@ export function CreateBountyModal({ open, onClose }: { open: boolean; onClose: (
     <>
       <Modal open={open && !published} onClose={close} className="max-w-xl">
         {/* Header / stepper */}
-        <div className="px-5 pt-5 pb-3 border-b border-border">
+        <div className="shrink-0 px-5 pt-5 pb-3 border-b border-border">
           <div className="text-xs text-faint">Post a bounty</div>
           <div className="mt-2 flex gap-2">
             {["Details", "Rewards"].map((s, i) => (
@@ -68,7 +68,7 @@ export function CreateBountyModal({ open, onClose }: { open: boolean; onClose: (
           </div>
         </div>
 
-        <div className="p-5 max-h-[68vh] overflow-y-auto no-scrollbar">
+        <div className="p-5 flex-1 min-h-0 overflow-y-auto no-scrollbar">
           {step === 0 ? (
             <div className="space-y-4">
               <p className="text-sm text-muted">
@@ -161,7 +161,7 @@ export function CreateBountyModal({ open, onClose }: { open: boolean; onClose: (
         </div>
 
         {/* Footer */}
-        <div className="px-5 py-4 border-t border-border flex items-center justify-between gap-3">
+        <div className="shrink-0 px-5 py-4 border-t border-border flex items-center justify-between gap-3">
           {step === 0 ? <span /> : <Button variant="ghost" onClick={() => setStep(0)}>Back</Button>}
           {step === 0 ? (
             <Button disabled={!detailsValid} onClick={() => setStep(1)}>Save & continue</Button>

@@ -34,7 +34,7 @@ export function BountyDetailModal({ bounty, onClose }: { bounty: Bounty | null; 
     <>
       <Modal open={!!bounty && !submitted} onClose={onClose} className="max-w-2xl">
         <div
-          className="relative h-32 rounded-t-2xl flex items-center justify-center"
+          className="shrink-0 relative h-32 rounded-t-2xl flex items-center justify-center"
           style={{ background: `linear-gradient(135deg, ${c1}33, ${c2}22)` }}
         >
           <span className="text-6xl">{bounty.emoji}</span>
@@ -43,7 +43,7 @@ export function BountyDetailModal({ bounty, onClose }: { bounty: Bounty | null; 
           </span>
         </div>
 
-        <div className="p-5 max-h-[70vh] overflow-y-auto no-scrollbar">
+        <div className="p-5 flex-1 min-h-0 overflow-y-auto no-scrollbar">
           <h2 className="text-xl font-bold">{bounty.title}</h2>
           <p className="mt-1.5 text-sm text-muted">{bounty.summary}</p>
 

@@ -30,7 +30,7 @@ export function Modal({
   return (
     <div className="fixed inset-0 z-[60] flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-      <div className={cn("relative w-full max-w-lg my-4 glass-strong rounded-2xl shadow-2xl", className)}>
+      <div className={cn("relative w-full max-w-lg my-4 glass-strong rounded-2xl shadow-2xl flex flex-col max-h-[calc(100dvh-2rem)] overflow-hidden", className)}>
         <button
           onClick={onClose}
           className="absolute top-3.5 right-3.5 z-10 grid place-items-center size-8 rounded-lg text-faint hover:text-text hover:bg-surface-2 transition-colors"
