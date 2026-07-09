@@ -195,7 +195,7 @@ export function PriceChart({ candles, symbol }: Props) {
             <Tooltip content={() => null} cursor={false} />
             <Bar
               dataKey="v"
-              fill={chartUp ? "rgba(46,230,166,0.25)" : "rgba(255,84,112,0.25)"}
+              fill={chartUp ? "rgba(0,200,5,0.25)" : "rgba(255,80,0,0.25)"}
               radius={[2, 2, 0, 0]}
               maxBarSize={12}
             />

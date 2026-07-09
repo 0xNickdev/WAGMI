@@ -1,32 +1,33 @@
 @import "tailwindcss";
 
 /*
-  WAGMII Design System — "Premium Degen" on BNB Smart Chain.
-  Warm-black canvas, BNB gold primary, mint/red market signals,
+  WAGMII Design System — Robinhood-inspired.
+  Near-black canvas, neon lime primary, green/red market signals,
   glass surfaces, soft glow, mono numerics.
+  Note: --gold* token names are kept for compatibility; they now hold lime values.
 */
 
 :root {
-  --bg: #08070a;
-  --bg-elevated: #0f0d13;
-  --surface: #15131b;
-  --surface-2: #1c1925;
-  --border: #2a2633;
-  --border-strong: #3a3547;
+  --bg: #070806;
+  --bg-elevated: #0d0f0b;
+  --surface: #131510;
+  --surface-2: #1a1d15;
+  --border: #262a1e;
+  --border-strong: #363c2a;
 
-  --text: #f4f1f7;
-  --text-muted: #a39fb0;
-  --text-faint: #6f6a7d;
+  --text: #f4f7ee;
+  --text-muted: #a1a698;
+  --text-faint: #6d7264;
 
-  --gold: #f0b90b;
-  --gold-bright: #ffd34e;
-  --gold-deep: #b8860b;
-  --amber: #ff9d2e;
+  --gold: #d6ff54;
+  --gold-bright: #e7ff8f;
+  --gold-deep: #9dc72c;
+  --amber: #aef136;
 
-  --up: #2ee6a6;
-  --up-dim: #12996b;
-  --down: #ff5470;
-  --down-dim: #b32a45;
+  --up: #00c805;
+  --up-dim: #0a8f3c;
+  --down: #ff5000;
+  --down-dim: #c23c08;
 
   --violet: #8b5cf6;
   --cyan: #22d3ee;
@@ -84,26 +85,26 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(60rem 40rem at 75% -10%, rgba(240, 185, 11, 0.10), transparent 60%),
-    radial-gradient(50rem 35rem at 10% 10%, rgba(139, 92, 246, 0.07), transparent 55%),
-    radial-gradient(40rem 40rem at 50% 110%, rgba(46, 230, 166, 0.05), transparent 60%);
+    radial-gradient(60rem 40rem at 75% -10%, rgba(214, 255, 84, 0.08), transparent 60%),
+    radial-gradient(50rem 35rem at 10% 10%, rgba(139, 92, 246, 0.05), transparent 55%),
+    radial-gradient(40rem 40rem at 50% 110%, rgba(0, 200, 5, 0.05), transparent 60%);
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; border: 2px solid var(--bg); }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
-::selection { background: rgba(240, 185, 11, 0.3); color: #fff; }
+::selection { background: rgba(214, 255, 84, 0.35); color: #fff; }
 
 @layer utilities {
   .glass {
-    background: linear-gradient(180deg, rgba(28, 25, 37, 0.7), rgba(15, 13, 19, 0.55));
+    background: linear-gradient(180deg, rgba(26, 29, 21, 0.7), rgba(13, 15, 11, 0.55));
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border);
   }
   .glass-strong {
-    background: linear-gradient(180deg, rgba(34, 30, 45, 0.85), rgba(18, 16, 24, 0.75));
+    background: linear-gradient(180deg, rgba(32, 36, 26, 0.85), rgba(16, 18, 13, 0.75));
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-strong);
@@ -121,14 +122,14 @@ body::before {
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(240,185,11,0.6), rgba(139,92,246,0.25), transparent 60%);
+    background: linear-gradient(135deg, rgba(214,255,84,0.6), rgba(0,200,5,0.25), transparent 60%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
   }
-  .glow-gold { box-shadow: 0 0 0 1px rgba(240,185,11,0.25), 0 8px 40px -8px rgba(240,185,11,0.35); }
-  .glow-up { box-shadow: 0 0 0 1px rgba(46,230,166,0.25), 0 8px 30px -10px rgba(46,230,166,0.4); }
+  .glow-gold { box-shadow: 0 0 0 1px rgba(214,255,84,0.25), 0 8px 40px -8px rgba(214,255,84,0.35); }
+  .glow-up { box-shadow: 0 0 0 1px rgba(0,200,5,0.25), 0 8px 30px -10px rgba(0,200,5,0.4); }
   .tabular { font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
   .grid-bg {
     background-image:
@@ -140,6 +141,50 @@ body::before {
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
+/* Ambient backdrop — radial gradients instead of blur() to avoid banding */
+.aurora-blob {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, var(--aurora-color, rgba(214, 255, 84, 0.07)), transparent 70%);
+  will-change: transform;
+  pointer-events: none;
+}
+@keyframes aurora-a {
+  0%, 100% { transform: translate3d(-6%, -4%, 0) scale(1); }
+  50% { transform: translate3d(8%, 10%, 0) scale(1.18); }
+}
+@keyframes aurora-b {
+  0%, 100% { transform: translate3d(4%, 6%, 0) scale(1.1); }
+  50% { transform: translate3d(-10%, -8%, 0) scale(0.92); }
+}
+@keyframes aurora-c {
+  0%, 100% { transform: translate3d(0, 8%, 0) scale(1); }
+  50% { transform: translate3d(6%, -6%, 0) scale(1.22); }
+}
+.aurora-a { animation: aurora-a 26s ease-in-out infinite; }
+.aurora-b { animation: aurora-b 32s ease-in-out infinite; }
+.aurora-c { animation: aurora-c 38s ease-in-out infinite; }
+
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
+/* Ticker marquee */
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-track {
+  animation: marquee 45s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-a, .aurora-b, .aurora-c, .marquee-track { animation: none; }
+}
+
 @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
 .skeleton {
   background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
@@ -147,8 +192,8 @@ body::before {
   animation: shimmer 1.5s infinite;
 }
 @keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(46,230,166,0.5); }
-  70% { box-shadow: 0 0 0 8px rgba(46,230,166,0); }
-  100% { box-shadow: 0 0 0 0 rgba(46,230,166,0); }
+  0% { box-shadow: 0 0 0 0 rgba(0,200,5,0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(0,200,5,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,200,5,0); }
 }
 .live-dot { animation: pulse-ring 2s infinite; }

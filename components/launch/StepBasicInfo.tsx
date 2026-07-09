@@ -121,7 +121,7 @@ export function StepBasicInfo({ state, dispatch, errors }: Props) {
       <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4">
         <Field label="Token Name" required error={hasNameError ? "Required" : undefined}>
           <TextField
-            placeholder="e.g. Wagmii Inu"
+            placeholder="e.g. Moon Inu"
             value={state.name}
             onChange={(e) => set(dispatch, "name", e.target.value)}
             error={hasNameError}
@@ -130,7 +130,7 @@ export function StepBasicInfo({ state, dispatch, errors }: Props) {
         </Field>
         <Field label="Symbol" required error={hasSymbolError ? "Required" : undefined} hint="Max 6 chars">
           <TextField
-            placeholder="e.g. WAGMII"
+            placeholder="e.g. MOON"
             value={state.symbol}
             onChange={(e) =>
               set(dispatch, "symbol", e.target.value.toUpperCase().slice(0, 6))

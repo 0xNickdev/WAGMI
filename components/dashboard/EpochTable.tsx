@@ -28,7 +28,7 @@ export function EpochTable({ epochs }: Props) {
             <th className="py-3 px-4 text-left text-xs uppercase tracking-wider text-faint font-medium">Epoch</th>
             <th className="py-3 px-4 text-left text-xs uppercase tracking-wider text-faint font-medium hidden sm:table-cell">Date</th>
             <th className="py-3 px-4 text-right text-xs uppercase tracking-wider text-faint font-medium">Distributed</th>
-            <th className="py-3 px-4 text-right text-xs uppercase tracking-wider text-faint font-medium hidden md:table-cell">BNB</th>
+            <th className="py-3 px-4 text-right text-xs uppercase tracking-wider text-faint font-medium hidden md:table-cell">ETH</th>
             <th className="py-3 px-4 text-right text-xs uppercase tracking-wider text-faint font-medium hidden md:table-cell">Stables</th>
             <th className="py-3 px-4 text-right text-xs uppercase tracking-wider text-faint font-medium hidden lg:table-cell">Holders</th>
             <th className="py-3 px-4 text-right text-xs uppercase tracking-wider text-faint font-medium">Status</th>
@@ -52,7 +52,7 @@ export function EpochTable({ epochs }: Props) {
               <td className="py-3 px-4 text-muted hidden sm:table-cell">{fmtDate(e.closedAt)}</td>
               <td className="py-3 px-4 text-right tabular font-semibold text-gold">{formatUsd(e.usdValue)}</td>
               <td className="py-3 px-4 text-right tabular text-muted hidden md:table-cell">
-                {e.bnbTotal.toFixed(2)} BNB
+                {e.ethTotal.toFixed(2)} ETH
               </td>
               <td className="py-3 px-4 text-right tabular text-muted hidden md:table-cell">
                 {formatUsd(e.stableTotal)}

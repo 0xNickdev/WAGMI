@@ -18,7 +18,7 @@ interface Props {
 const CONFETTI = Array.from({ length: 28 }, (_, i) => ({
   id: i,
   x: Math.sin(i * 1.37) * 50 + 50,
-  color: i % 4 === 0 ? "#f0b90b" : i % 4 === 1 ? "#8b5cf6" : i % 4 === 2 ? "#2ee6a6" : "#ff9d2e",
+  color: i % 4 === 0 ? "#d6ff54" : i % 4 === 1 ? "#8b5cf6" : i % 4 === 2 ? "#00c805" : "#aef136",
   size: 6 + (i % 5) * 2,
   delay: (i * 0.07) % 0.8,
   duration: 1.2 + (i % 5) * 0.3,
@@ -98,7 +98,7 @@ export function SuccessScreen({ state, contractAddress, onLaunchAnother }: Props
         <h2 className="text-3xl font-bold text-text">Token Deployed!</h2>
         <p className="text-muted max-w-sm">
           <span className="text-gradient-gold font-semibold">${displaySymbol}</span> is live on
-          BNB Smart Chain. Auto-LP has been seeded on PancakeSwap.
+          Robinhood Chain. Auto-LP has been seeded on Uniswap.
         </p>
       </motion.div>
 
@@ -141,10 +141,10 @@ export function SuccessScreen({ state, contractAddress, onLaunchAnother }: Props
           </button>
         </div>
 
-        {/* PancakeSwap notice */}
+        {/* Uniswap notice */}
         <div className="flex items-center gap-2 rounded-lg bg-up/8 border border-up/20 px-3 py-2">
           <div className="size-2 rounded-full bg-up live-dot shrink-0" />
-          <p className="text-xs text-up">Auto-LP created on PancakeSwap — trading is live</p>
+          <p className="text-xs text-up">Auto-LP created on Uniswap — trading is live</p>
         </div>
       </motion.div>
 

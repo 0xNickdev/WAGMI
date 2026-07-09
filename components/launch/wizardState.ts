@@ -15,13 +15,17 @@ export interface WizardState {
   telegram: string;
   discord: string;
 
-  // Step 2 – Supply
+  // Supply is fixed in Moonshill V1 (1B, no minting) — kept for preview components
   customSupply: boolean;
   supply: number;
 
-  // Step 3 – Tax
+  // Step 2 – Tax
   buyTax: number;
   sellTax: number;
+
+  // Step 3 – Launch (optional creator buy before public trading)
+  buyBeforeLaunch: boolean;
+  creatorBuyEth: number;
 
   // Step 4 – Reward Allocation
   burnEnabled: boolean;
@@ -36,12 +40,12 @@ export interface WizardState {
 }
 
 export const GRADIENTS = [
-  "#f0b90b,#ff9d2e",
+  "#d6ff54,#aef136",
   "#8b5cf6,#22d3ee",
-  "#2ee6a6,#22d3ee",
-  "#ff5470,#ff9d2e",
-  "#f0b90b,#8b5cf6",
-  "#22d3ee,#2ee6a6",
+  "#00c805,#22d3ee",
+  "#ff5000,#aef136",
+  "#d6ff54,#8b5cf6",
+  "#22d3ee,#00c805",
 ];
 
 export const DEFAULT_STATE: WizardState = {
@@ -57,10 +61,13 @@ export const DEFAULT_STATE: WizardState = {
   discord: "",
 
   customSupply: false,
-  supply: 100_000_000,
+  supply: 1_000_000_000,
 
   buyTax: 3,
   sellTax: 5,
+
+  buyBeforeLaunch: false,
+  creatorBuyEth: 0.5,
 
   burnEnabled: false,
   burnPct: 0,
@@ -68,7 +75,7 @@ export const DEFAULT_STATE: WizardState = {
   devPct: 10,
 
   frequency: "1h",
-  rewardAsset: "BNB",
+  rewardAsset: "ETH",
   externalAddress: "",
 };
 
@@ -90,7 +97,7 @@ export function wizardReducer(state: WizardState, action: WizardAction): WizardS
   }
 }
 
-// Per-step validation
+// Per-step validation (Moonshill V1: 1 Basic Info · 2 Taxes · 3 Launch)
 export function validateStep(step: number, s: WizardState): string[] {
   const errs: string[] = [];
   if (step === 1) {
@@ -98,21 +105,12 @@ export function validateStep(step: number, s: WizardState): string[] {
     if (!s.symbol.trim()) errs.push("Token symbol is required.");
   }
   if (step === 2) {
-    if (s.supply < 1_000_000) errs.push("Supply must be at least 1,000,000.");
-    if (s.supply > 1_000_000_000) errs.push("Supply cannot exceed 1,000,000,000.");
-  }
-  if (step === 3) {
     if (s.buyTax > 10) errs.push("Buy tax cannot exceed 10%.");
     if (s.sellTax > 10) errs.push("Sell tax cannot exceed 10%.");
   }
-  if (step === 4) {
-    const totalAlloc = (s.burnEnabled ? s.burnPct : 0) + s.devPct;
-    if (totalAlloc > 100) errs.push("Burn + Dev allocation cannot exceed 100%.");
-    if (s.devPct > 0 && !s.devAddress.trim()) errs.push("Dev wallet address is required when dev allocation > 0%.");
-  }
-  if (step === 5) {
-    if (s.rewardAsset === "EXTERNAL" && !s.externalAddress.trim())
-      errs.push("External token contract address is required.");
+  if (step === 3) {
+    if (s.buyBeforeLaunch && s.creatorBuyEth <= 0)
+      errs.push("Enter the ETH amount for your pre-launch buy.");
   }
   return errs;
 }

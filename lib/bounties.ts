@@ -1,7 +1,7 @@
 /* WAGMI Bounty — real-life task marketplace (pump.fun-bounty style).
    Deterministic seeded mock data; stands in for the indexer/API. */
 
-const BNB_USD = 620;
+const ETH_USD = 3200;
 
 export type BountyStatus = "live" | "paid" | "expired";
 
@@ -66,14 +66,14 @@ function hash(s: string) {
 }
 
 const GRADS = [
-  "#f0b90b,#ff9d2e",
+  "#d6ff54,#aef136",
   "#8b5cf6,#22d3ee",
-  "#2ee6a6,#12996b",
-  "#ff5470,#ff9d2e",
+  "#00c805,#0a8f3c",
+  "#ff5000,#aef136",
   "#22d3ee,#8b5cf6",
-  "#ffd34e,#f0b90b",
+  "#e7ff8f,#d6ff54",
   "#ff6ec7,#8b5cf6",
-  "#2ee6a6,#22d3ee",
+  "#00c805,#22d3ee",
 ];
 
 const SEED: Omit<Bounty, "id" | "gradient" | "creatorAvatar" | "createdAt" | "expiresAt" | "status" | "submissions" | "rewardUsd" | "winners">[] = [
@@ -207,8 +207,8 @@ export function getBounty(id: string) {
   return getBounties().find((b) => b.id === id);
 }
 
-export function bnbOf(usd: number) {
-  return usd / BNB_USD;
+export function ethOf(usd: number) {
+  return usd / ETH_USD;
 }
 
 export function getBountyStats() {

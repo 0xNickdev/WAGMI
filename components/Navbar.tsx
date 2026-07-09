@@ -11,10 +11,7 @@ import { Menu, X, Rocket } from "lucide-react";
 
 const LINKS = [
   { href: "/explore", label: "Explore" },
-  { href: "/bounty", label: "Bounty" },
-  { href: "/leaderboard", label: "Leaderboard" },
-  { href: "/treasury", label: "Treasury" },
-  { href: "/claim", label: "Claim" },
+  { href: "/#how", label: "How It Works" },
 ];
 
 export function Navbar() {
@@ -43,7 +40,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Logo size={30} />
             <span className="font-bold text-lg tracking-tight">
-              WAG<span className="text-gradient-gold">MII</span>
+              MOON<span className="text-gradient-gold">SHILL</span>
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-1">

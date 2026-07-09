@@ -43,9 +43,9 @@ const NAMES: [string, string][] = [
   ["Moon Rabbit", "MRBT"],
   ["Degen Pepe", "DPEPE"],
   ["Golden Bonk", "GBONK"],
-  ["Wagmi Inu", "WINU"],
+  ["Moon Inu", "MINU"],
   ["Bull Run AI", "BRAI"],
-  ["Pancake Cat", "PCAT"],
+  ["Hood Cat", "HCAT"],
   ["Liquid Gold", "LGOLD"],
   ["Based Frog", "BFROG"],
   ["Neon Shiba", "NSHIB"],
@@ -67,21 +67,21 @@ const NAMES: [string, string][] = [
 ];
 
 const GRADIENTS = [
-  "#f0b90b,#ff9d2e",
+  "#d6ff54,#aef136",
   "#8b5cf6,#22d3ee",
-  "#2ee6a6,#12996b",
-  "#ff5470,#ff9d2e",
+  "#00c805,#0a8f3c",
+  "#ff5000,#aef136",
   "#22d3ee,#8b5cf6",
-  "#ffd34e,#f0b90b",
+  "#e7ff8f,#d6ff54",
   "#ff6ec7,#8b5cf6",
-  "#2ee6a6,#22d3ee",
+  "#00c805,#22d3ee",
 ];
 
 const DESCRIPTIONS = [
   "Community-owned meme with a revenue-share engine baked into every trade.",
-  "Permissionless launch on BNB Chain. Taxes flow straight to holders.",
+  "Permissionless launch on Robinhood Chain. Taxes flow straight to holders.",
   "The people's coin. No team allocation, no presale, pure degen energy.",
-  "Auto-LP, auto-rewards, auto-WAGMI. Hold and earn from the flywheel.",
+  "Auto-LP, auto-rewards, auto-moon. Hold and earn from the flywheel.",
   "Every buy and sell feeds the treasury. Holders claim their share each epoch.",
 ];
 
@@ -101,10 +101,10 @@ function buildToken(i: number): Token {
   const rng = mulberry32(hashStr(symbol) + i * 7919);
   const address = hexAddr(rng);
   const trend = rng() > 0.42 ? 1 : -1;
-  const priceChange24h = Number(((rng() * 320 - 60) * (trend > 0 ? 1 : 0.5)).toFixed(2));
+  const priceChange24h = Number((trend > 0 ? rng() * 260 + 1 : -(rng() * 55 + 2)).toFixed(2));
   const price = Number((rng() * 0.012 + 0.0000004).toFixed(8));
-  const supply = 100_000_000;
-  const marketCap = price * supply * (rng() * 40 + 5);
+  const supply = 1_000_000_000; // Moonshill V1: fixed supply, no minting
+  const marketCap = price * supply * (rng() * 4 + 0.5);
   const liquidity = marketCap * (rng() * 0.25 + 0.08);
   const volume24h = marketCap * (rng() * 1.4 + 0.05);
   const ageHours = Math.floor(rng() * 720) + 1;
@@ -113,7 +113,7 @@ function buildToken(i: number): Token {
   const devPct = Math.floor(rng() * 20);
   const holderPct = 100 - burnPct - devPct;
   const freqs = ["20m", "1h", "6h", "24h"] as const;
-  const assets = ["BNB", "SAME_TOKEN", "EXTERNAL"] as const;
+  const assets = ["ETH", "SAME_TOKEN", "EXTERNAL"] as const;
 
   return {
     address,
@@ -122,10 +122,10 @@ function buildToken(i: number): Token {
     description: DESCRIPTIONS[i % DESCRIPTIONS.length],
     logoColor: GRADIENTS[i % GRADIENTS.length],
     socials: {
-      website: "https://wagmii.money",
-      twitter: "https://x.com/wagmii",
-      telegram: "https://t.me/wagmii",
-      discord: rng() > 0.5 ? "https://discord.gg/wagmii" : undefined,
+      website: "https://moonshill.money",
+      twitter: "https://x.com/moonshill",
+      telegram: "https://t.me/moonshill",
+      discord: rng() > 0.5 ? "https://discord.gg/moonshill" : undefined,
     },
     createdAt: Date.now() - ageHours * 3600_000,
     creator: hexAddr(rng),
@@ -180,7 +180,7 @@ export function getGainers(n = 8): Token[] {
 
 export function getHolders(token: Token): Holder[] {
   const rng = mulberry32(hashStr(token.address) + 13);
-  const labels = ["PancakeSwap LP", "Treasury", "Burn", "Whale", "", "", "", ""];
+  const labels = ["Uniswap LP", "Treasury", "Burn", "Whale", "", "", "", ""];
   let remaining = 62;
   const out: Holder[] = [];
   for (let i = 0; i < 20; i++) {
@@ -260,7 +260,7 @@ export function getTreasury(): TreasuryStats {
     epochs.push({
       id: 142 - i,
       closedAt: t,
-      bnbTotal: usd / 620,
+      ethTotal: usd / 3200,
       stableTotal: usd * 0.35,
       usdValue: usd,
       eligibleHolders: Math.floor(rng() * 5000) + 800,
@@ -269,7 +269,7 @@ export function getTreasury(): TreasuryStats {
   }
   return {
     tvlUsd,
-    bnbHeld: tvlUsd * 0.55 / 620,
+    ethHeld: tvlUsd * 0.55 / 3200,
     usdtHeld: tvlUsd * 0.28,
     usdcHeld: tvlUsd * 0.17,
     totalDistributedUsd: epochs.reduce((s, e) => s + e.usdValue, 0) + 2_100_000,
@@ -289,7 +289,7 @@ export function getClaimable(connected: boolean): ClaimablePosition[] {
     return {
       token,
       epochId: 142,
-      amountBnb: amountUsd / 620,
+      amountBnb: amountUsd / 3200,
       amountUsd,
       eligible,
       reason: eligible

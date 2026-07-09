@@ -19,9 +19,9 @@ const FREQ_LABEL: Record<RewardFrequency, string> = {
 };
 
 const ASSET_LABEL: Record<RewardAsset, string> = {
-  BNB: "BNB",
+  ETH: "ETH",
   SAME_TOKEN: "Same token",
-  EXTERNAL: "External BEP-20",
+  EXTERNAL: "External ERC-20",
 };
 
 export function LivePreview({ state, currentStep }: Props) {
@@ -166,16 +166,16 @@ export function LivePreview({ state, currentStep }: Props) {
         <p className="text-xs font-semibold text-muted uppercase tracking-wider">Deploy Estimate</p>
         <div className="flex items-center justify-between">
           <span className="text-xs text-faint">Contract deploy</span>
-          <span className="text-xs tabular text-text">~0.02 BNB</span>
+          <span className="text-xs tabular text-text">~0.02 ETH</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-xs text-faint">Auto-LP seed</span>
-          <span className="text-xs tabular text-text">~0.1 BNB</span>
+          <span className="text-xs tabular text-text">~0.1 ETH</span>
         </div>
         <div className="h-px bg-border my-1" />
         <div className="flex items-center justify-between">
           <span className="text-xs font-medium text-text">Total</span>
-          <span className="text-xs font-bold tabular text-gold">~0.12 BNB</span>
+          <span className="text-xs font-bold tabular text-gold">~0.12 ETH</span>
         </div>
       </div>
     </div>

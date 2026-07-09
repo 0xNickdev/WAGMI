@@ -48,12 +48,12 @@ export function DistributionChart({ epochs }: Props) {
       <BarChart data={data} barCategoryGap="30%">
         <defs>
           <linearGradient id="goldBar" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#ffd34e" stopOpacity={0.95} />
-            <stop offset="100%" stopColor="#f0b90b" stopOpacity={0.6} />
+            <stop offset="0%" stopColor="#e7ff8f" stopOpacity={0.95} />
+            <stop offset="100%" stopColor="#d6ff54" stopOpacity={0.6} />
           </linearGradient>
           <linearGradient id="activeBar" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#2ee6a6" stopOpacity={0.95} />
-            <stop offset="100%" stopColor="#12996b" stopOpacity={0.6} />
+            <stop offset="0%" stopColor="#00c805" stopOpacity={0.95} />
+            <stop offset="100%" stopColor="#0a8f3c" stopOpacity={0.6} />
           </linearGradient>
         </defs>
         <CartesianGrid vertical={false} stroke="rgba(255,255,255,0.04)" />

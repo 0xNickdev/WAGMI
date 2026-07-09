@@ -32,7 +32,7 @@ export function TabBar({ tabs, active, onChange }: TabBarProps) {
             className={cn(
               "relative flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
               isActive
-                ? "text-black bg-gradient-to-b from-gold-bright to-gold shadow-[0_4px_16px_-4px_rgba(240,185,11,0.55)]"
+                ? "text-black bg-gradient-to-b from-gold-bright to-gold shadow-[0_4px_16px_-4px_rgba(214,255,84,0.55)]"
                 : "text-muted hover:text-text hover:bg-surface-2/70",
             )}
           >

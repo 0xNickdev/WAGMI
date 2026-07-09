@@ -31,10 +31,10 @@ const FREQ_DESCRIPTION: Record<RewardFrequency, string> = {
 
 const ASSET_OPTIONS: { value: RewardAsset; label: string; icon: typeof Coins; description: string }[] = [
   {
-    value: "BNB",
-    label: "BNB (native)",
+    value: "ETH",
+    label: "ETH (native)",
     icon: Coins,
-    description: "Holders receive BNB directly. No swap needed — lowest friction.",
+    description: "Holders receive ETH directly. No swap needed — lowest friction.",
   },
   {
     value: "SAME_TOKEN",
@@ -44,9 +44,9 @@ const ASSET_OPTIONS: { value: RewardAsset; label: string; icon: typeof Coins; de
   },
   {
     value: "EXTERNAL",
-    label: "External BEP-20",
+    label: "External ERC-20",
     icon: ExternalLink,
-    description: "Distribute a different BEP-20 token (USDT, CAKE, etc.) as rewards.",
+    description: "Distribute a different ERC-20 token (USDT, CAKE, etc.) as rewards.",
   },
 ];
 
@@ -116,7 +116,7 @@ export function StepRewardConfig({ state, dispatch, errors }: Props) {
           label="External Token Contract Address"
           required
           error={extError}
-          hint="Must be a valid BEP-20 contract on BNB Smart Chain."
+          hint="Must be a valid ERC-20 contract on Robinhood Chain."
         >
           <TextField
             placeholder="0x..."

@@ -15,32 +15,32 @@ interface Props {
 type Side = "buy" | "sell";
 
 export function TradePanel({ token }: Props) {
-  const { address, bnbBalance, connecting } = useWallet();
+  const { address, ethBalance, connecting } = useWallet();
   const [side, setSide] = useState<Side>("buy");
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
 
   const tax = side === "buy" ? token.buyTax : token.sellTax;
-  const bnbPrice = 620; // mock BNB/USD
+  const ethPrice = 3200; // mock ETH/USD
 
   // Derived estimates
   const amountNum = parseFloat(amount) || 0;
-  const usdValue = side === "buy" ? amountNum * bnbPrice : (amountNum * token.price);
+  const usdValue = side === "buy" ? amountNum * ethPrice : (amountNum * token.price);
   const taxAmount = usdValue * (tax / 100);
   const netUsd = usdValue - taxAmount;
   const tokensOut = side === "buy" ? netUsd / token.price : 0;
-  const bnbOut = side === "sell" ? netUsd / bnbPrice : 0;
+  const ethOut = side === "sell" ? netUsd / ethPrice : 0;
   const priceImpact = Math.min(usdValue / (token.liquidity || 1) * 100, 99);
   const minReceived = side === "buy"
     ? tokensOut * 0.995
-    : bnbOut * 0.995;
+    : ethOut * 0.995;
 
-  const maxAmount = side === "buy" ? bnbBalance : undefined;
+  const maxAmount = side === "buy" ? ethBalance : undefined;
 
   const handleMax = useCallback(() => {
-    if (side === "buy") setAmount(bnbBalance.toFixed(4));
-  }, [side, bnbBalance]);
+    if (side === "buy") setAmount(ethBalance.toFixed(4));
+  }, [side, ethBalance]);
 
   const handleTrade = useCallback(async () => {
     if (!amountNum || loading) return;
@@ -52,11 +52,11 @@ export function TradePanel({ token }: Props) {
     setTimeout(() => setConfirmed(false), 3000);
   }, [amountNum, loading]);
 
-  const inputLabel = side === "buy" ? "BNB" : token.symbol;
-  const outputLabel = side === "buy" ? token.symbol : "BNB";
+  const inputLabel = side === "buy" ? "ETH" : token.symbol;
+  const outputLabel = side === "buy" ? token.symbol : "ETH";
 
   const isInsufficient =
-    side === "buy" && amountNum > bnbBalance && amountNum > 0;
+    side === "buy" && amountNum > ethBalance && amountNum > 0;
   const canTrade = address && amountNum > 0 && !isInsufficient;
 
   return (
@@ -88,7 +88,7 @@ export function TradePanel({ token }: Props) {
             <span>You {side === "buy" ? "spend" : "sell"}</span>
             {side === "buy" && (
               <span className="tabular">
-                Balance: <span className="text-muted">{bnbBalance.toFixed(3)} BNB</span>
+                Balance: <span className="text-muted">{ethBalance.toFixed(3)} ETH</span>
               </span>
             )}
           </div>
@@ -129,7 +129,7 @@ export function TradePanel({ token }: Props) {
               <span className="text-xl font-semibold tabular text-text">
                 {side === "buy"
                   ? formatNum(tokensOut, { compact: tokensOut > 1e6 })
-                  : bnbOut.toFixed(5)}
+                  : ethOut.toFixed(5)}
               </span>
               <span className="text-sm font-semibold text-muted">{outputLabel}</span>
             </div>
@@ -150,12 +150,12 @@ export function TradePanel({ token }: Props) {
               value={
                 side === "buy"
                   ? `${formatNum(minReceived, { compact: minReceived > 1e6 })} ${token.symbol}`
-                  : `${minReceived.toFixed(5)} BNB`
+                  : `${minReceived.toFixed(5)} ETH`
               }
               className="text-muted"
             />
             <div className="pt-1 border-t border-border">
-              <Row label="Rate" value={`1 BNB = ${formatNum(1 / token.price / bnbPrice * 1e0)} ${token.symbol}`} className="text-muted" />
+              <Row label="Rate" value={`1 ETH = ${formatNum(1 / token.price / ethPrice * 1e0)} ${token.symbol}`} className="text-muted" />
             </div>
           </div>
         )}
@@ -164,7 +164,7 @@ export function TradePanel({ token }: Props) {
         {isInsufficient && (
           <div className="flex items-center gap-2 bg-down/10 border border-down/25 rounded-xl px-3 py-2.5 text-xs text-down">
             <AlertTriangle size={13} />
-            Insufficient BNB balance
+            Insufficient ETH balance
           </div>
         )}
 
@@ -193,7 +193,7 @@ export function TradePanel({ token }: Props) {
         )}
 
         <p className="text-[10px] text-faint text-center leading-relaxed">
-          Simulated trade · BNB Chain · WAGMII Router v2
+          Simulated trade · Robinhood Chain · Moonshill Router v2
         </p>
       </div>
     </div>

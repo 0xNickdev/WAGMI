@@ -15,15 +15,15 @@ function set(dispatch: Props["dispatch"], field: keyof WizardState, value: Wizar
   dispatch({ type: "SET_FIELD", field, value });
 }
 
-const SAMPLE_BNB = 1;
-const BNB_PRICE_USD = 600;
+const SAMPLE_ETH = 1;
+const ETH_PRICE_USD = 3200;
 
 export function StepTax({ state, dispatch }: Props) {
   const totalTax = state.buyTax + state.sellTax;
   const warnHigh = totalTax > 12;
 
-  const buyTaxAmount = SAMPLE_BNB * (state.buyTax / 100);
-  const sellTaxAmount = SAMPLE_BNB * (state.sellTax / 100);
+  const buyTaxAmount = SAMPLE_ETH * (state.buyTax / 100);
+  const sellTaxAmount = SAMPLE_ETH * (state.sellTax / 100);
 
   return (
     <div className="flex flex-col gap-6">
@@ -59,7 +59,7 @@ export function StepTax({ state, dispatch }: Props) {
           min={0}
           max={10}
           step={0.5}
-          accentColor="#2ee6a6"
+          accentColor="#00c805"
         />
         <div className="flex justify-between text-xs text-faint">
           <span>0% (none)</span>
@@ -69,14 +69,14 @@ export function StepTax({ state, dispatch }: Props) {
         {/* Sample calc */}
         <div className="rounded-lg bg-surface-2 border border-border px-3 py-2.5 flex items-center justify-between">
           <span className="text-xs text-faint">
-            On a {SAMPLE_BNB} BNB buy
+            On a {SAMPLE_ETH} ETH buy
           </span>
           <div className="flex items-center gap-2">
             <span className="text-xs text-down tabular">
-              -{buyTaxAmount.toFixed(4)} BNB
+              -{buyTaxAmount.toFixed(4)} ETH
             </span>
             <span className="text-xs text-faint tabular">
-              ≈ ${formatNum(buyTaxAmount * BNB_PRICE_USD)}
+              ≈ ${formatNum(buyTaxAmount * ETH_PRICE_USD)}
             </span>
           </div>
         </div>
@@ -100,7 +100,7 @@ export function StepTax({ state, dispatch }: Props) {
           min={0}
           max={10}
           step={0.5}
-          accentColor="#ff5470"
+          accentColor="#ff5000"
         />
         <div className="flex justify-between text-xs text-faint">
           <span>0% (none)</span>
@@ -109,14 +109,14 @@ export function StepTax({ state, dispatch }: Props) {
 
         <div className="rounded-lg bg-surface-2 border border-border px-3 py-2.5 flex items-center justify-between">
           <span className="text-xs text-faint">
-            On a {SAMPLE_BNB} BNB sell
+            On a {SAMPLE_ETH} ETH sell
           </span>
           <div className="flex items-center gap-2">
             <span className="text-xs text-down tabular">
-              -{sellTaxAmount.toFixed(4)} BNB
+              -{sellTaxAmount.toFixed(4)} ETH
             </span>
             <span className="text-xs text-faint tabular">
-              ≈ ${formatNum(sellTaxAmount * BNB_PRICE_USD)}
+              ≈ ${formatNum(sellTaxAmount * ETH_PRICE_USD)}
             </span>
           </div>
         </div>

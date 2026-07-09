@@ -4,13 +4,13 @@ import { TokenLogo } from "./ui/TokenLogo";
 import { Sparkline } from "./ui/Sparkline";
 import { ChangeBadge } from "./ui/Badge";
 import { formatPrice, formatUsd, timeAgo, cn } from "@/lib/utils";
-import { Flame, Users } from "lucide-react";
+import { Flame, Droplets } from "lucide-react";
 
 export function TokenCard({ token, rank }: { token: Token; rank?: number }) {
   return (
     <Link
       href={`/token/${token.address}`}
-      className="group glass rounded-2xl p-4 flex flex-col gap-3 transition-all duration-200 hover:border-gold/40 hover:-translate-y-0.5 hover:glow-gold"
+      className="group glass rounded-2xl p-4 h-full flex flex-col gap-3 transition-all duration-200 hover:border-gold/40 hover:-translate-y-0.5 hover:glow-gold"
     >
       <div className="flex items-center gap-3">
         <TokenLogo symbol={token.symbol} gradient={token.logoColor} size={44} />
@@ -42,8 +42,8 @@ export function TokenCard({ token, rank }: { token: Token; rank?: number }) {
 
       <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border text-center">
         <Mini label="MCap" value={formatUsd(token.marketCap)} />
+        <Mini label="Liquidity" value={formatUsd(token.liquidity)} icon={<Droplets size={10} />} />
         <Mini label="Vol 24h" value={formatUsd(token.volume24h)} />
-        <Mini label="Holders" value={token.holders.toLocaleString()} icon={<Users size={10} />} />
       </div>
     </Link>
   );

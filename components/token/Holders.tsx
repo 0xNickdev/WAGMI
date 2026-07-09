@@ -32,7 +32,7 @@ export function Holders({ holders, supply }: Props) {
           {/* Address + label */}
           <div className="flex items-center gap-2 min-w-0">
             <a
-              href={`https://bscscan.com/address/${h.address}`}
+              href={`https://explorer.robinhoodchain.io/address/${h.address}`}
               target="_blank"
               rel="noopener noreferrer"
               className="tabular text-xs font-mono text-muted group-hover:text-gold transition-colors truncate"
@@ -44,7 +44,7 @@ export function Holders({ holders, supply }: Props) {
                 tone={
                   h.label === "Burn"
                     ? "gold"
-                    : h.label.includes("Pancake")
+                    : h.label.includes("Uniswap")
                     ? "cyan"
                     : h.label === "Treasury"
                     ? "violet"

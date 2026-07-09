@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Bounty } from "@/lib/bounties";
-import { bnbOf, getSubmissions } from "@/lib/bounties";
+import { ethOf, getSubmissions } from "@/lib/bounties";
 import { Modal } from "./Modal";
 import { XVerifyModal } from "./XVerifyModal";
 import { Button } from "@/components/ui/Button";
@@ -51,7 +51,7 @@ export function BountyDetailModal({ bounty, onClose }: { bounty: Bounty | null; 
             <div className="glass rounded-xl p-3">
               <div className="text-[11px] text-faint uppercase tracking-wider">Reward</div>
               <div className="text-lg font-bold tabular text-gradient-gold">{formatUsd(bounty.rewardUsd)}</div>
-              <div className="text-[11px] text-faint tabular">{bnbOf(bounty.rewardUsd).toFixed(3)} BNB</div>
+              <div className="text-[11px] text-faint tabular">{ethOf(bounty.rewardUsd).toFixed(3)} ETH</div>
             </div>
             <div className="glass rounded-xl p-3">
               <div className="text-[11px] text-faint uppercase tracking-wider">Winners</div>

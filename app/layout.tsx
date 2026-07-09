@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Backdrop } from "@/components/Backdrop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,13 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WAGMII — Permissionless Revenue-Share Launchpad on BNB Chain",
+  title: "Moonshill — Simple ERC20 Launchpad on Robinhood Chain",
   description:
-    "Launch BEP-20 tokens in seconds. Every trade funds a shared treasury that pays out to holders. Trade, earn, repeat. wagmii.money",
+    "Launch a token in under a minute. Fixed 1B supply, no presales, no bonding curves — straight to Uniswap V3. Trading starts immediately.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#08070a",
+  themeColor: "#070806",
 };
 
 export default function RootLayout({
@@ -36,6 +37,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <Backdrop />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

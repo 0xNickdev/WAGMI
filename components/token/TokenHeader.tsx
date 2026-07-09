@@ -45,7 +45,7 @@ export function TokenHeader({ token }: Props) {
             <span className="font-mono text-lg text-faint leading-none">${token.symbol}</span>
             <Badge tone="gold" className="flex items-center gap-1">
               <ShieldCheck size={10} />
-              Verified WAGMII token
+              Verified Moonshill token
             </Badge>
           </div>
 
@@ -61,6 +61,13 @@ export function TokenHeader({ token }: Props) {
                 ? <Check size={12} className="text-up" />
                 : <Copy size={12} />}
             </button>
+            <span className="text-faint text-xs">·</span>
+            <a
+              href={`/creator/${token.creator}`}
+              className="text-xs text-muted hover:text-gold transition-colors"
+            >
+              by <span className="font-mono">{shortAddr(token.creator)}</span>
+            </a>
           </div>
         </div>
 

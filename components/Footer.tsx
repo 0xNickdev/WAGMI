@@ -3,20 +3,18 @@ import { Logo } from "./Logo";
 
 const COLS = [
   {
-    title: "Protocol",
+    title: "Launchpad",
     links: [
       { label: "Explore", href: "/explore" },
       { label: "Launch Token", href: "/launch" },
-      { label: "Leaderboard", href: "/leaderboard" },
-      { label: "Treasury", href: "/treasury" },
+      { label: "Trending", href: "/explore" },
     ],
   },
   {
-    title: "Earn",
+    title: "Learn",
     links: [
-      { label: "Claim Rewards", href: "/claim" },
       { label: "How It Works", href: "/#how" },
-      { label: "Trending", href: "/explore" },
+      { label: "Docs", href: "#" },
     ],
   },
   {
@@ -38,13 +36,14 @@ export function Footer() {
           <Link href="/" className="flex items-center gap-2">
             <Logo size={28} />
             <span className="font-bold text-lg">
-              WAG<span className="text-gradient-gold">MII</span>
+              MOON<span className="text-gradient-gold">SHILL</span>
             </span>
           </Link>
           <p className="mt-3 text-sm text-muted max-w-xs">
-            Permissionless revenue-share token launchpad on BNB Smart Chain. Trade, earn, repeat.
+            Simple ERC20 launchpad on Robinhood Chain. Fixed supply, no presales,
+            no bonding curves — straight to Uniswap V3.
           </p>
-          <p className="mt-4 text-xs text-faint">wagmii.money · BNB Smart Chain</p>
+          <p className="mt-4 text-xs text-faint">moonshill.money · Robinhood Chain</p>
         </div>
         {COLS.map((col) => (
           <div key={col.title}>
@@ -63,7 +62,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-faint">
-          <span>© {new Date().getFullYear()} WAGMII Protocol. All trades carry risk.</span>
+          <span>© {new Date().getFullYear()} Moonshill Protocol. All trades carry risk.</span>
           <span>Built for degens, owned by the community.</span>
         </div>
       </div>

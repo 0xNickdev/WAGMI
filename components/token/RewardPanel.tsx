@@ -18,7 +18,7 @@ const FREQ_LABEL: Record<string, string> = {
 };
 
 const ASSET_META: Record<string, { label: string; color: string }> = {
-  BNB:        { label: "BNB",        color: "text-gold" },
+  ETH:        { label: "ETH",        color: "text-gold" },
   SAME_TOKEN: { label: "Same Token", color: "text-cyan" },
   EXTERNAL:   { label: "External",   color: "text-violet" },
 };

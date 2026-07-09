@@ -7,7 +7,7 @@ import { shortAddr } from "@/lib/utils";
 import { Wallet, LogOut, Copy, Check, Loader2 } from "lucide-react";
 
 export function ConnectButton({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
-  const { address, connecting, connect, disconnect, bnbBalance } = useWallet();
+  const { address, connecting, connect, disconnect, ethBalance } = useWallet();
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -15,7 +15,13 @@ export function ConnectButton({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
     return (
       <Button size={size} onClick={() => connect()} disabled={connecting}>
         {connecting ? <Loader2 size={16} className="animate-spin" /> : <Wallet size={16} />}
-        {connecting ? "Connecting…" : "Connect Wallet"}
+        {connecting ? (
+          "Connecting…"
+        ) : (
+          <span>
+            Connect<span className="hidden sm:inline"> Wallet</span>
+          </span>
+        )}
       </Button>
     );
   }
@@ -31,7 +37,7 @@ export function ConnectButton({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
           <div className="absolute right-0 mt-2 w-60 glass-strong rounded-xl p-3 z-50 shadow-2xl">
             <div className="text-xs text-faint">Balance</div>
-            <div className="text-lg font-semibold tabular">{bnbBalance.toFixed(3)} BNB</div>
+            <div className="text-lg font-semibold tabular">{ethBalance.toFixed(3)} ETH</div>
             <div className="mt-3 flex flex-col gap-1">
               <button
                 className="flex items-center gap-2 text-sm text-muted hover:text-text px-2 py-1.5 rounded-lg hover:bg-surface-2 transition-colors"

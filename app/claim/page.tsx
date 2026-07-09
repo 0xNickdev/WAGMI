@@ -39,8 +39,8 @@ const HOW_STEPS = [
   },
   {
     icon: <Gift size={20} className="text-up" />,
-    title: "Claim your BNB rewards",
-    body: "Connect your wallet, hit Claim All, and BNB lands in your account — no staking, no lock-ups.",
+    title: "Claim your ETH rewards",
+    body: "Connect your wallet, hit Claim All, and ETH lands in your account — no staking, no lock-ups.",
   },
   {
     icon: <Users size={20} className="text-cyan" />,
@@ -75,7 +75,7 @@ function DisconnectedView() {
           </h1>
 
           <p className="mt-5 text-muted text-lg max-w-xl mx-auto leading-relaxed">
-            Every trade on WAGMII funds the treasury. Eligible token holders receive BNB distributions
+            Every trade on Moonshill funds the treasury. Eligible token holders receive ETH distributions
             every epoch — automatically, transparently, on-chain.
           </p>
 
@@ -157,7 +157,7 @@ function PositionRow({
         {pos.eligible ? (
           <>
             <div className="tabular font-semibold text-gold">{formatUsd(pos.amountUsd)}</div>
-            <div className="text-xs text-faint tabular">{pos.amountBnb.toFixed(4)} BNB</div>
+            <div className="text-xs text-faint tabular">{pos.amountBnb.toFixed(4)} ETH</div>
           </>
         ) : (
           <div className="text-xs text-muted max-w-[140px] text-right leading-tight">{pos.reason}</div>
@@ -269,7 +269,7 @@ function ConnectedView() {
                       <AnimatedNumber value={totalClaimable} format={(n) => formatUsd(n)} />
                     </div>
                     <div className="text-sm text-muted tabular mt-1">
-                      ≈ {totalBnb.toFixed(4)} BNB
+                      ≈ {totalBnb.toFixed(4)} ETH
                     </div>
                   </>
                 )}
@@ -352,7 +352,7 @@ function ConnectedView() {
             <Wallet size={36} className="text-faint mx-auto mb-3" />
             <div className="font-semibold text-muted">No positions found</div>
             <p className="text-sm text-faint mt-1 max-w-xs mx-auto">
-              Hold tokens on WAGMII for a full epoch window to become eligible for rewards.
+              Hold tokens on Moonshill for a full epoch window to become eligible for rewards.
             </p>
           </CardBody>
         )}

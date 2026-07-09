@@ -1,4 +1,4 @@
-export type RewardAsset = "BNB" | "SAME_TOKEN" | "EXTERNAL";
+export type RewardAsset = "ETH" | "SAME_TOKEN" | "EXTERNAL";
 export type RewardFrequency = "20m" | "1h" | "6h" | "24h";
 
 export interface TokenSocials {
@@ -82,7 +82,7 @@ export interface Token {
 
 export interface TreasuryStats {
   tvlUsd: number;
-  bnbHeld: number;
+  ethHeld: number;
   usdtHeld: number;
   usdcHeld: number;
   totalDistributedUsd: number;
@@ -94,7 +94,7 @@ export interface TreasuryStats {
 export interface EpochRecord {
   id: number;
   closedAt: number;
-  bnbTotal: number;
+  ethTotal: number;
   stableTotal: number;
   usdValue: number;
   eligibleHolders: number;

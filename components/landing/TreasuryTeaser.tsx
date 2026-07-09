@@ -2,20 +2,22 @@ import { getTreasury } from "@/lib/mock";
 import { formatUsd } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { EpochCountdown } from "@/components/EpochCountdown";
+import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRight, Landmark } from "lucide-react";
 
 export function TreasuryTeaser() {
   const t = getTreasury();
   const split = [
-    { label: "BNB", value: t.bnbHeld * 620, color: "#f0b90b" },
-    { label: "USDT", value: t.usdtHeld, color: "#2ee6a6" },
+    { label: "ETH", value: t.ethHeld * 3200, color: "#d6ff54" },
+    { label: "USDT", value: t.usdtHeld, color: "#00c805" },
     { label: "USDC", value: t.usdcHeld, color: "#22d3ee" },
   ];
   const total = split.reduce((s, x) => s + x.value, 0);
 
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12">
-      <div className="relative glass-strong rounded-3xl p-8 sm:p-10 overflow-hidden border-gradient-gold">
+      <Reveal>
+      <div className="relative glass-strong rounded-3xl p-6 sm:p-10 overflow-hidden border-gradient-gold">
         <div className="absolute -top-24 -right-24 size-80 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
         <div className="relative grid gap-8 lg:grid-cols-[1.2fr_1fr] items-center">
           <div>
@@ -70,6 +72,7 @@ export function TreasuryTeaser() {
           </div>
         </div>
       </div>
+      </Reveal>
     </section>
   );
 }

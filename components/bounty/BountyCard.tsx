@@ -1,7 +1,7 @@
 "use client";
 
 import type { Bounty } from "@/lib/bounties";
-import { bnbOf } from "@/lib/bounties";
+import { ethOf } from "@/lib/bounties";
 import { formatUsd, timeAgo, cn } from "@/lib/utils";
 import { Users, Clock, Trophy, Play } from "lucide-react";
 
@@ -44,7 +44,7 @@ export function BountyCard({ bounty, onOpen }: { bounty: Bounty; onOpen: (b: Bou
         <div className="mt-3 flex items-end justify-between">
           <div>
             <div className="text-lg font-bold tabular text-gradient-gold">{formatUsd(bounty.rewardUsd)}</div>
-            <div className="text-[11px] text-faint tabular">{bnbOf(bounty.rewardUsd).toFixed(3)} BNB</div>
+            <div className="text-[11px] text-faint tabular">{ethOf(bounty.rewardUsd).toFixed(3)} ETH</div>
           </div>
           {bounty.winners > 1 && (
             <span className="inline-flex items-center gap-1 text-[11px] text-muted">

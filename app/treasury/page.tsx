@@ -12,17 +12,17 @@ import { Landmark, TrendingUp, Coins, CalendarClock, ArrowRight } from "lucide-r
 import { Button } from "@/components/ui/Button";
 
 export const metadata = {
-  title: "Treasury — WAGMII",
+  title: "Treasury — Moonshill",
   description: "Protocol treasury stats, asset breakdown, and epoch distribution history.",
 };
 
 export default function TreasuryPage() {
   const t = getTreasury();
 
-  const bnbUsd = t.bnbHeld * 620;
+  const ethUsd = t.ethHeld * 3200;
   const slices = [
-    { label: "BNB", value: bnbUsd, color: "#f0b90b" },
-    { label: "USDT", value: t.usdtHeld, color: "#2ee6a6" },
+    { label: "ETH", value: ethUsd, color: "#d6ff54" },
+    { label: "USDT", value: t.usdtHeld, color: "#00c805" },
     { label: "USDC", value: t.usdcHeld, color: "#22d3ee" },
   ];
 
@@ -53,7 +53,7 @@ export default function TreasuryPage() {
               <AnimatedNumber value={t.tvlUsd} preset="usd" />
             </div>
             <div className="text-xs text-muted mt-1">
-              {t.bnbHeld.toFixed(2)} BNB · {formatUsd(t.usdtHeld)} USDT · {formatUsd(t.usdcHeld)} USDC
+              {t.ethHeld.toFixed(2)} ETH · {formatUsd(t.usdtHeld)} USDT · {formatUsd(t.usdcHeld)} USDC
             </div>
           </div>
         </div>

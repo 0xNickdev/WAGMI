@@ -10,20 +10,16 @@ import { cn } from "@/lib/utils";
 
 import { wizardReducer, DEFAULT_STATE, isStepValid, validateStep } from "@/components/launch/wizardState";
 import { StepBasicInfo } from "@/components/launch/StepBasicInfo";
-import { StepSupply } from "@/components/launch/StepSupply";
 import { StepTax } from "@/components/launch/StepTax";
-import { StepAllocation } from "@/components/launch/StepAllocation";
-import { StepRewardConfig } from "@/components/launch/StepRewardConfig";
 import { LivePreview } from "@/components/launch/LivePreview";
 import { SuccessScreen } from "@/components/launch/SuccessScreen";
+import { shortAddr } from "@/lib/utils";
 
-// ── Step metadata ──────────────────────────────────────────────────────────────
+// ── Step metadata (Moonshill V1: fill details → taxes → launch) ────────────────
 const STEPS = [
   { number: 1, label: "Basic Info", short: "Info" },
-  { number: 2, label: "Supply", short: "Supply" },
-  { number: 3, label: "Tax Config", short: "Tax" },
-  { number: 4, label: "Allocations", short: "Alloc" },
-  { number: 5, label: "Rewards", short: "Rewards" },
+  { number: 2, label: "Taxes", short: "Taxes" },
+  { number: 3, label: "Review & Launch", short: "Launch" },
 ];
 
 const TOTAL_STEPS = STEPS.length;
@@ -170,33 +166,13 @@ export default function LaunchPage() {
     dispatch({ type: "SET_FIELD", field: "twitter", value: "" });
     dispatch({ type: "SET_FIELD", field: "telegram", value: "" });
     dispatch({ type: "SET_FIELD", field: "discord", value: "" });
-    dispatch({ type: "SET_FIELD", field: "supply", value: 100_000_000 });
+    dispatch({ type: "SET_FIELD", field: "supply", value: 1_000_000_000 });
     dispatch({ type: "SET_FIELD", field: "customSupply", value: false });
     dispatch({ type: "SET_FIELD", field: "buyTax", value: 3 });
     dispatch({ type: "SET_FIELD", field: "sellTax", value: 5 });
-    dispatch({ type: "SET_FIELD", field: "burnEnabled", value: false });
-    dispatch({ type: "SET_FIELD", field: "burnPct", value: 0 });
-    dispatch({ type: "SET_FIELD", field: "devAddress", value: "" });
-    dispatch({ type: "SET_FIELD", field: "devPct", value: 10 });
-    dispatch({ type: "SET_FIELD", field: "frequency", value: "1h" });
-    dispatch({ type: "SET_FIELD", field: "rewardAsset", value: "BNB" });
-    dispatch({ type: "SET_FIELD", field: "externalAddress", value: "" });
+    dispatch({ type: "SET_FIELD", field: "buyBeforeLaunch", value: false });
+    dispatch({ type: "SET_FIELD", field: "creatorBuyEth", value: 0.5 });
   }
-
-  const effectiveBurn = state.burnEnabled ? state.burnPct : 0;
-  const holderPct = Math.max(0, 100 - effectiveBurn - state.devPct);
-
-  const FREQ_LABEL: Record<string, string> = {
-    "20m": "Every 20 min",
-    "1h": "Every hour",
-    "6h": "Every 6 hours",
-    "24h": "Daily",
-  };
-  const ASSET_LABEL: Record<string, string> = {
-    BNB: "BNB (native)",
-    SAME_TOKEN: "Same token",
-    EXTERNAL: "External BEP-20",
-  };
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 sm:py-14">
@@ -204,12 +180,14 @@ export default function LaunchPage() {
       <div className="mb-8 sm:mb-10">
         <div className="inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-xs font-medium text-muted mb-4">
           <span className="size-1.5 rounded-full bg-gold live-dot" />
-          BNB Smart Chain · Permissionless Deploy
+          Robinhood Chain · Permissionless Deploy
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
           Launch Your <span className="text-gradient-gold">Token</span>
         </h1>
-        <p className="text-muted mt-2">Configure your BEP-20 token in 5 steps. No code required.</p>
+        <p className="text-muted mt-2">
+          Three steps, under a minute. Fixed 1B supply, straight to Uniswap V3 — trading starts immediately.
+        </p>
       </div>
 
       {/* Success screen replaces wizard when deployed */}
@@ -240,9 +218,7 @@ export default function LaunchPage() {
                       Step {step} of {TOTAL_STEPS}
                     </p>
                     <h2 className="text-xl font-bold text-text mt-0.5">
-                      {step < TOTAL_STEPS
-                        ? STEPS[step - 1].label
-                        : "Reward Config"}
+                      {STEPS[step - 1].label}
                     </h2>
                   </div>
                   {/* Progress ring placeholder */}
@@ -293,38 +269,82 @@ export default function LaunchPage() {
                       <StepBasicInfo state={state} dispatch={dispatch} errors={errors} />
                     )}
                     {step === 2 && (
-                      <StepSupply state={state} dispatch={dispatch} errors={errors} />
-                    )}
-                    {step === 3 && (
                       <StepTax state={state} dispatch={dispatch} errors={errors} />
                     )}
-                    {step === 4 && (
-                      <StepAllocation state={state} dispatch={dispatch} errors={errors} />
-                    )}
-                    {step === 5 && (
+                    {step === 3 && (
                       <>
-                        <StepRewardConfig state={state} dispatch={dispatch} errors={errors} />
+                        {/* Buy Before Launch */}
+                        <button
+                          type="button"
+                          onClick={() =>
+                            dispatch({ type: "SET_FIELD", field: "buyBeforeLaunch", value: !state.buyBeforeLaunch })
+                          }
+                          className={cn(
+                            "w-full text-left rounded-xl border p-4 transition-colors",
+                            state.buyBeforeLaunch
+                              ? "border-gold/50 bg-gold/8"
+                              : "border-border hover:border-border-strong",
+                          )}
+                        >
+                          <div className="flex items-center justify-between gap-3">
+                            <div>
+                              <p className="font-semibold text-sm">Buy before launch</p>
+                              <p className="text-xs text-muted mt-0.5">
+                                Deploy first and buy your own allocation before trading opens to the public.
+                              </p>
+                            </div>
+                            <span
+                              className={cn(
+                                "relative shrink-0 w-10 h-6 rounded-full transition-colors",
+                                state.buyBeforeLaunch ? "bg-gold" : "bg-surface-2",
+                              )}
+                            >
+                              <span
+                                className={cn(
+                                  "absolute top-1 size-4 rounded-full bg-bg transition-all",
+                                  state.buyBeforeLaunch ? "left-5" : "left-1",
+                                )}
+                              />
+                            </span>
+                          </div>
+                        </button>
+                        {state.buyBeforeLaunch && (
+                          <div className="mt-3 flex items-center gap-3">
+                            <label className="text-sm text-muted shrink-0">Creator buy</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step={0.1}
+                              value={state.creatorBuyEth}
+                              onChange={(e) =>
+                                dispatch({ type: "SET_FIELD", field: "creatorBuyEth", value: Number(e.target.value) })
+                              }
+                              className="w-28 rounded-lg bg-surface-2 border border-border px-3 py-2 text-sm tabular focus:border-gold outline-none"
+                            />
+                            <span className="text-sm text-muted">ETH</span>
+                          </div>
+                        )}
 
                         {/* Review summary */}
-                        <div className="mt-8 glass-strong rounded-xl p-5 flex flex-col gap-0">
+                        <div className="mt-6 glass-strong rounded-xl p-5 flex flex-col gap-0">
                           <p className="text-xs font-semibold text-muted uppercase tracking-wider mb-3">
                             Review &amp; Confirm
                           </p>
                           <ReviewRow label="Token Name" value={state.name || "—"} />
                           <ReviewRow label="Symbol" value={state.symbol ? `$${state.symbol}` : "—"} />
-                          <ReviewRow label="Supply" value={state.supply.toLocaleString("en-US")} />
+                          <ReviewRow label="Supply" value="1,000,000,000 (fixed)" />
                           <ReviewRow label="Buy Tax" value={`${state.buyTax.toFixed(1)}%`} />
                           <ReviewRow label="Sell Tax" value={`${state.sellTax.toFixed(1)}%`} />
-                          <ReviewRow label="Holder Rewards" value={`${holderPct}%`} />
-                          {effectiveBurn > 0 && (
-                            <ReviewRow label="Burn" value={`${effectiveBurn}%`} />
-                          )}
-                          {state.devPct > 0 && (
-                            <ReviewRow label="Dev Wallet" value={`${state.devPct}%`} />
-                          )}
-                          <ReviewRow label="Frequency" value={FREQ_LABEL[state.frequency]} />
-                          <ReviewRow label="Reward Asset" value={ASSET_LABEL[state.rewardAsset]} />
+                          <ReviewRow
+                            label="Buy Before Launch"
+                            value={state.buyBeforeLaunch ? `${state.creatorBuyEth} ETH` : "Off"}
+                          />
+                          <ReviewRow label="Creator Wallet" value={address ? shortAddr(address) : "Connect wallet"} />
+                          <ReviewRow label="Pool" value="Uniswap V3" />
                         </div>
+                        <p className="mt-4 text-xs text-faint">
+                          Creator wallet receives your share of LP fees, future tax distributions and rewards.
+                        </p>
                       </>
                     )}
                   </motion.div>
@@ -365,12 +385,12 @@ export default function LaunchPage() {
                       {deploying ? (
                         <>
                           <Loader2 size={16} className="animate-spin" />
-                          Deploying…
+                          Launching…
                         </>
                       ) : (
                         <>
                           <Rocket size={16} />
-                          Deploy Token
+                          Launch Token
                         </>
                       )}
                     </Button>

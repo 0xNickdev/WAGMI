@@ -45,7 +45,7 @@ export default function BountyPage() {
           <div>
             <GraffitiTitle />
             <p className="mt-4 max-w-xl text-muted">
-              Post real-life tasks, fund them in BNB, and pay out the degens who actually do them.
+              Post real-life tasks, fund them in ETH, and pay out the degens who actually do them.
               Shave WAGMI into your head, tag a landmark, start a flash mob — submit proof, get paid.
             </p>
           </div>

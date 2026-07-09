@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { formatUsd } from "@/lib/utils";
@@ -17,8 +17,30 @@ const fadeUp = {
 };
 
 export function Hero() {
+  const { scrollY } = useScroll();
+  const glowY = useTransform(scrollY, [0, 700], [0, 140]);
+  const glowOpacity = useTransform(scrollY, [0, 500], [1, 0.4]);
+
   return (
     <section className="relative overflow-hidden grid-bg">
+      <motion.div
+        aria-hidden
+        style={{ y: glowY, opacity: glowOpacity }}
+        className="absolute inset-0 -z-10 pointer-events-none"
+      >
+        <div
+          className="absolute left-1/2 top-[-28%] -translate-x-1/2 w-[84rem] h-[46rem]"
+          style={{ background: "radial-gradient(closest-side, rgba(214,255,84,0.10), transparent 70%)" }}
+        />
+        <div
+          className="absolute left-[-8%] top-[30%] size-[26rem]"
+          style={{ background: "radial-gradient(closest-side, rgba(0,200,5,0.06), transparent 70%)" }}
+        />
+        <div
+          className="absolute right-[-6%] top-[10%] size-[24rem]"
+          style={{ background: "radial-gradient(closest-side, rgba(157,199,44,0.09), transparent 70%)" }}
+        />
+      </motion.div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-bg" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-24 text-center">
         <motion.div
@@ -29,9 +51,9 @@ export function Hero() {
           className="inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-xs font-medium text-muted mb-7"
         >
           <span className="size-1.5 rounded-full bg-up live-dot" />
-          Live on BNB Smart Chain
+          Live on Robinhood Chain
           <span className="text-faint">·</span>
-          <span className="text-gold">Zero gatekeeping</span>
+          <span className="text-gold">No bonding curves</span>
         </motion.div>
 
         <motion.h1
@@ -41,9 +63,9 @@ export function Hero() {
           animate="show"
           className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]"
         >
-          Launch a token.
+          Launch a token
           <br />
-          <span className="text-gradient-gold">Every trade pays holders.</span>
+          <span className="text-gradient-gold">in under a minute.</span>
         </motion.h1>
 
         <motion.p
@@ -53,9 +75,9 @@ export function Hero() {
           animate="show"
           className="mt-6 text-lg text-muted max-w-2xl mx-auto"
         >
-          WAGMII is a permissionless launchpad where every buy and sell feeds a shared
-          treasury — and that treasury pays back to the people who hold. No presale, no
-          approval, no extraction.
+          Moonshill is a dead-simple ERC20 launchpad on Robinhood Chain. Fixed 1B supply,
+          no presales, no bonding curves — every token launches straight onto Uniswap V3
+          and trades immediately.
         </motion.p>
 
         <motion.div
@@ -89,7 +111,7 @@ export function Hero() {
             fmt={(n) => formatUsd(n)}
           />
           <HeroStat
-            label="Rewards Paid"
+            label="LP Fees Earned"
             value={PLATFORM_STATS.rewardsDistributedUsd}
             fmt={(n) => formatUsd(n)}
             highlight
@@ -105,7 +127,7 @@ export function Hero() {
           className="mt-6 inline-flex items-center gap-1.5 text-xs text-faint"
         >
           <Zap size={13} className="text-gold" />
-          Deploy a BEP-20 with auto-LP in under 30 seconds
+          Deploy an ERC20 with instant Uniswap V3 liquidity — trading starts immediately
         </motion.p>
       </div>
     </section>

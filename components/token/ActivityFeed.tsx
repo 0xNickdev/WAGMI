@@ -103,7 +103,7 @@ export function ActivityFeed({ activity }: Props) {
 
                 {/* Tx link */}
                 <a
-                  href={`https://bscscan.com/tx/${a.txHash}`}
+                  href={`https://explorer.robinhoodchain.io/tx/${a.txHash}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-faint hover:text-gold transition-colors flex justify-center"

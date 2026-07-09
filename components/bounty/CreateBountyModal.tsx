@@ -35,7 +35,7 @@ export function CreateBountyModal({ open, onClose }: { open: boolean; onClose: (
 
   const detailsValid = title.trim().length > 2 && summary.trim().length > 8 && deliverables.some((d) => d.trim());
   const rewardsValid = Number(amount) > 0 && confirm1 && confirm2;
-  const usd = (Number(amount) || 0) * 620;
+  const usd = (Number(amount) || 0) * 3200;
 
   const publish = () => setVerifyOpen(true);
   const onVerified = () => {
@@ -120,11 +120,11 @@ export function CreateBountyModal({ open, onClose }: { open: boolean; onClose: (
                 <div className="flex gap-2">
                   <div className="flex items-center gap-2 rounded-xl bg-surface-2 border border-border-strong px-3 shrink-0">
                     <span className="size-5 rounded-full bg-gradient-to-br from-gold-bright to-gold" />
-                    <span className="text-sm font-semibold">BNB</span>
+                    <span className="text-sm font-semibold">ETH</span>
                   </div>
                   <input type="number" min={0} step="0.01" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" className={cn(inputCls, "tabular")} />
                 </div>
-                <div className="mt-1 text-xs text-faint tabular">≈ ${usd.toLocaleString("en-US", { maximumFractionDigits: 2 })} · 12.48 BNB available</div>
+                <div className="mt-1 text-xs text-faint tabular">≈ ${usd.toLocaleString("en-US", { maximumFractionDigits: 2 })} · 12.48 ETH available</div>
               </Field>
               <Field label="Number of winners">
                 <div className="flex items-center gap-2">
@@ -182,7 +182,7 @@ export function CreateBountyModal({ open, onClose }: { open: boolean; onClose: (
             </div>
             <h2 className="text-xl font-bold">Bounty published! 🎉</h2>
             <p className="mt-2 text-sm text-muted">
-              <span className="text-text font-medium">{title || "Your bounty"}</span> is live with {amount || "0"} BNB locked in escrow. It now appears in the WAGMI Bounty feed.
+              <span className="text-text font-medium">{title || "Your bounty"}</span> is live with {amount || "0"} ETH locked in escrow. It now appears in the WAGMI Bounty feed.
             </p>
             <Button onClick={close} className="mt-5 w-full" size="lg">View feed</Button>
           </div>
