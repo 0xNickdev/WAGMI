@@ -1,11 +1,11 @@
-/* Robinhood Chain network config — override via env for testnet/mainnet.
-   Values ship as placeholders until the public chain params are announced. */
+/* Robinhood Chain network config — defaults to the public testnet
+   (docs.robinhood.com/chain), override via env for mainnet. */
 
 export const CHAIN = {
   id: Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? 46630),
-  name: process.env.NEXT_PUBLIC_CHAIN_NAME ?? "Robinhood Chain",
-  rpcUrl: process.env.NEXT_PUBLIC_RPC_URL ?? "https://rpc.robinhoodchain.io",
-  explorerUrl: process.env.NEXT_PUBLIC_EXPLORER_URL ?? "https://explorer.robinhoodchain.io",
+  name: process.env.NEXT_PUBLIC_CHAIN_NAME ?? "Robinhood Chain Testnet",
+  rpcUrl: process.env.NEXT_PUBLIC_RPC_URL ?? "https://rpc.testnet.chain.robinhood.com/rpc",
+  explorerUrl: process.env.NEXT_PUBLIC_EXPLORER_URL ?? "https://explorer.testnet.chain.robinhood.com",
   currency: { name: "Ether", symbol: "ETH", decimals: 18 },
 };
 
