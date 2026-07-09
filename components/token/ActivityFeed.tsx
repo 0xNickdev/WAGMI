@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Activity } from "@/lib/types";
+import { explorerTxUrl } from "@/lib/chain";
 import { formatUsd, formatNum, shortAddr, timeAgo, cn } from "@/lib/utils";
 import { ExternalLink, TrendingUp, TrendingDown, Flame, Gift } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -99,11 +100,11 @@ export function ActivityFeed({ activity }: Props) {
                 </span>
 
                 {/* Time */}
-                <span className="text-xs text-right text-faint">{timeAgo(a.ts)}</span>
+                <span suppressHydrationWarning className="text-xs text-right text-faint">{timeAgo(a.ts)}</span>
 
                 {/* Tx link */}
                 <a
-                  href={`https://explorer.robinhoodchain.io/tx/${a.txHash}`}
+                  href={explorerTxUrl(a.txHash)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-faint hover:text-gold transition-colors flex justify-center"

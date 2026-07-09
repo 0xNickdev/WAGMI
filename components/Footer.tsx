@@ -62,7 +62,14 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-faint">
-          <span>© {new Date().getFullYear()} Moonshill Protocol. All trades carry risk.</span>
+          <span className="flex items-center gap-2">
+            © {new Date().getFullYear()} Moonshill Protocol. All trades carry risk.
+            {!process.env.NEXT_PUBLIC_API_URL && (
+              <span className="rounded-full border border-amber/40 text-amber px-2 py-0.5 text-[10px] uppercase tracking-wider">
+                Demo data
+              </span>
+            )}
+          </span>
           <span>Built for degens, owned by the community.</span>
         </div>
       </div>

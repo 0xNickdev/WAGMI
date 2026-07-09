@@ -173,6 +173,19 @@ body::before {
   mix-blend-mode: overlay;
 }
 
+/* Card shine sweep on hover */
+.card-shine { position: relative; overflow: hidden; }
+.card-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(214, 255, 84, 0.06) 50%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+.card-shine:hover::after { transform: translateX(120%); }
+
 /* Ticker marquee */
 @keyframes marquee { to { transform: translateX(-50%); } }
 .marquee-track {

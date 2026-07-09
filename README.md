@@ -1,44 +1,61 @@
-# WAGMII — Frontend
+# Moonshill — Frontend
 
-Premium frontend for **WAGMII** (wagmii.money), a permissionless revenue-share token
-launchpad on BNB Smart Chain. Launch a BEP-20 in seconds, every trade funds a shared
-treasury, and that treasury pays back to eligible holders each epoch.
+Frontend for **Moonshill**, a simple ERC20 launchpad on **Robinhood Chain**.
+Launch a token in under a minute: fixed 1B supply, no presales, no bonding
+curves — every token launches straight onto Uniswap V3 and trades immediately.
 
-Built from `WAGMII_Frontend_PRD.docx` + `Wagmii PRD TDD v1.docx`.
+Built from `Moonshill_Launchpad_V1_Requirements.docx`.
 
 ## Stack
 
 - **Next.js 16** (App Router, Turbopack) · **React 19** · **TypeScript**
 - **Tailwind CSS v4** (CSS-variable design tokens)
-- **framer-motion** (motion) · **recharts** (charts) · **lucide-react** (icons)
-- **zustand** (mock wallet store) · serialized mock data layer (stands in for the indexer/REST API)
-
-> Wallet + on-chain calls are mocked (`lib/wallet.ts`, `lib/mock.ts`) so the whole UI is
-> interactive end-to-end with no backend. Swap these for `wagmi`/`viem` + the real API when
-> contracts and the indexer are live.
+- **framer-motion** (motion) · **recharts** (fallback charts) · **lucide-react** (icons)
+- **zustand** (wallet store) · injected EIP-1193 wallet (MetaMask, Rabby, Coinbase Wallet, …)
 
 ## Routes
 
-| Route | Page |
-|-------|------|
-| `/` | Landing — hero, platform stats, trending, the flywheel, treasury teaser |
-| `/explore` | Discovery feed — trending/new/gainers, search, sort, filters, grid/list |
-| `/token/[address]` | Token terminal — overview, price+volume chart, trade panel, reward dashboard, holders, activity |
-| `/launch` | 5-step token creation wizard with live preview + simulated deploy |
-| `/claim` | Holder distribution dashboard (connect -> claim) |
-| `/treasury` | Treasury stats, asset breakdown, epoch distribution history |
-| `/leaderboard` | Top tokens by volume / market cap / holders / rewards |
+| Route | Purpose |
+| --- | --- |
+| `/` | Hero, price ticker, Trending / New Launches / Recently Launched |
+| `/explore` | Full token list with search, sort, filters |
+| `/launch` | 3-step launch wizard (Basic Info → Taxes → Review & Launch) |
+| `/token/[address]` | Token page: chart, trade panel, holders, activity |
+| `/creator/[address]` | Creator profile: tokens created, volume, LP fees earned |
 
-## Develop
+## Configuration
+
+Copy `.env.example` to `.env.local` and fill in:
+
+| Var | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_CHAIN_ID` / `NEXT_PUBLIC_RPC_URL` / `NEXT_PUBLIC_EXPLORER_URL` | Robinhood Chain params (placeholders until public values are announced) |
+| `NEXT_PUBLIC_GECKO_NETWORK` | GeckoTerminal network slug — enables embedded pool charts on token pages |
+| `NEXT_PUBLIC_API_URL` | Moonshill indexer/REST API |
+
+## Going live checklist
+
+Real today:
+
+- ✅ Wallet connect (`lib/wallet.ts`) — injected EIP-1193: real account, real ETH
+  balance, auto add/switch to Robinhood Chain, account/chain-change listeners
+- ✅ Explorer links route through `lib/chain.ts`
+- ✅ Token charts (`components/token/GeckoChart.tsx`) — GeckoTerminal embed when
+  `NEXT_PUBLIC_GECKO_NETWORK` is set and the token has `poolAddress`; local
+  candle chart fallback otherwise
+
+Still demo (waiting on contracts + indexer):
+
+- ⏳ Token/market data comes from `lib/mock.ts` while `NEXT_PUBLIC_API_URL` is
+  unset — the footer shows a **Demo data** badge in this mode. Replace the
+  `lib/mock.ts` getters with API fetchers once the indexer ships (same
+  signatures, swap the implementation).
+- ⏳ Trading (`components/token/TradePanel.tsx`) and the launch wizard deploy
+  step simulate transactions — wire to the launch/router contracts.
+
+## Dev
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # production build
+npm run dev
 ```
-
-## Design language
-
-Warm-black canvas, BNB-gold primary, mint/red market signals, frosted-glass surfaces,
-soft glow, tabular mono numerics. Dark theme, mobile-first. Tokens + utility classes
-(.glass, .text-gradient-gold, .glow-gold, .tabular, ...) live in app/globals.css.

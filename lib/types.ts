@@ -57,6 +57,7 @@ export interface Token {
 
   createdAt: number;
   creator: string;
+  poolAddress?: string; // Uniswap V3 pool (set by indexer; enables GeckoTerminal embed)
 
   price: number;
   priceChange24h: number;

@@ -10,7 +10,7 @@ export function TokenCard({ token, rank }: { token: Token; rank?: number }) {
   return (
     <Link
       href={`/token/${token.address}`}
-      className="group glass rounded-2xl p-4 h-full flex flex-col gap-3 transition-all duration-200 hover:border-gold/40 hover:-translate-y-0.5 hover:glow-gold"
+      className="group glass card-shine rounded-2xl p-4 h-full flex flex-col gap-3 transition-all duration-200 hover:border-gold/40 hover:-translate-y-0.5 hover:glow-gold"
     >
       <div className="flex items-center gap-3">
         <TokenLogo symbol={token.symbol} gradient={token.logoColor} size={44} />

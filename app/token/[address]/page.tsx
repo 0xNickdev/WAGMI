@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 import { TokenHeader } from "@/components/token/TokenHeader";
-import { PriceChart } from "@/components/token/PriceChart";
+import { GeckoChart } from "@/components/token/GeckoChart";
 import { ActivityFeed } from "@/components/token/ActivityFeed";
 import { Holders } from "@/components/token/Holders";
 import { TradePanel } from "@/components/token/TradePanel";
@@ -111,7 +111,7 @@ export default async function TokenDetailPage({
 
           {/* 2. Live chart */}
           <Card className="overflow-hidden">
-            <PriceChart candles={candles} symbol={token.symbol} />
+            <GeckoChart token={token} candles={candles} />
           </Card>
 
           {/* 3. Activity feed */}

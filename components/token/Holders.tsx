@@ -1,4 +1,5 @@
 import type { Holder } from "@/lib/types";
+import { explorerAddressUrl } from "@/lib/chain";
 import { shortAddr, formatNum, cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
 
@@ -32,7 +33,7 @@ export function Holders({ holders, supply }: Props) {
           {/* Address + label */}
           <div className="flex items-center gap-2 min-w-0">
             <a
-              href={`https://explorer.robinhoodchain.io/address/${h.address}`}
+              href={explorerAddressUrl(h.address)}
               target="_blank"
               rel="noopener noreferrer"
               className="tabular text-xs font-mono text-muted group-hover:text-gold transition-colors truncate"

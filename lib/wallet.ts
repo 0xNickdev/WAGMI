@@ -1,28 +1,137 @@
 "use client";
 
 import { create } from "zustand";
+import { CHAIN, CHAIN_ID_HEX } from "./chain";
 
-/* Mock wallet — stands in for wagmi/viem until contracts are wired.
-   Simulates a connect flow so the whole UI is interactive end-to-end. */
+/* Real injected-wallet connection (MetaMask, Rabby, Coinbase Wallet, …)
+   via EIP-1193. No mock: address and ETH balance come from the wallet. */
+
+interface Eip1193Provider {
+  request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
+  on?: (event: string, cb: (...args: never[]) => void) => void;
+  removeListener?: (event: string, cb: (...args: never[]) => void) => void;
+}
+
+declare global {
+  interface Window {
+    ethereum?: Eip1193Provider;
+  }
+}
 
 interface WalletState {
   address: string | null;
   connecting: boolean;
   ethBalance: number;
-  connect: (connector?: string) => Promise<void>;
+  chainId: number | null;
+  error: string | null;
+  connect: () => Promise<void>;
   disconnect: () => void;
+  refreshBalance: () => Promise<void>;
 }
 
-const DEMO_ADDR = "0x7A91cE4dBb09f2a3E5f8C1d0B2a4F6e8D3c9A0b1";
+function getProvider(): Eip1193Provider | null {
+  if (typeof window === "undefined") return null;
+  return window.ethereum ?? null;
+}
 
-export const useWallet = create<WalletState>((set) => ({
+async function fetchBalance(provider: Eip1193Provider, address: string): Promise<number> {
+  const wei = (await provider.request({
+    method: "eth_getBalance",
+    params: [address, "latest"],
+  })) as string;
+  return Number(BigInt(wei)) / 1e18;
+}
+
+async function ensureChain(provider: Eip1193Provider) {
+  try {
+    await provider.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: CHAIN_ID_HEX }],
+    });
+  } catch (err) {
+    // 4902: chain not added to the wallet yet
+    if ((err as { code?: number }).code === 4902) {
+      await provider.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: CHAIN_ID_HEX,
+            chainName: CHAIN.name,
+            rpcUrls: [CHAIN.rpcUrl],
+            blockExplorerUrls: [CHAIN.explorerUrl],
+            nativeCurrency: CHAIN.currency,
+          },
+        ],
+      });
+    } else {
+      throw err;
+    }
+  }
+}
+
+let listenersBound = false;
+
+export const useWallet = create<WalletState>((set, get) => ({
   address: null,
   connecting: false,
-  ethBalance: 12.48,
+  ethBalance: 0,
+  chainId: null,
+  error: null,
+
   connect: async () => {
-    set({ connecting: true });
-    await new Promise((r) => setTimeout(r, 700));
-    set({ address: DEMO_ADDR, connecting: false });
+    const provider = getProvider();
+    if (!provider) {
+      set({ error: "No wallet found. Install MetaMask or another browser wallet." });
+      window.open("https://metamask.io/download/", "_blank", "noopener");
+      return;
+    }
+    set({ connecting: true, error: null });
+    try {
+      const accounts = (await provider.request({
+        method: "eth_requestAccounts",
+      })) as string[];
+      const address = accounts[0] ?? null;
+      if (!address) throw new Error("No account returned");
+
+      await ensureChain(provider);
+      const chainId = Number(
+        (await provider.request({ method: "eth_chainId" })) as string,
+      );
+      const ethBalance = await fetchBalance(provider, address);
+      set({ address, chainId, ethBalance, connecting: false });
+
+      if (!listenersBound && provider.on) {
+        listenersBound = true;
+        provider.on("accountsChanged", ((accs: string[]) => {
+          if (!accs.length) get().disconnect();
+          else {
+            set({ address: accs[0] });
+            get().refreshBalance();
+          }
+        }) as never);
+        provider.on("chainChanged", ((id: string) => {
+          set({ chainId: Number(id) });
+          get().refreshBalance();
+        }) as never);
+      }
+    } catch (err) {
+      set({
+        connecting: false,
+        error: (err as Error).message || "Connection rejected",
+      });
+    }
   },
-  disconnect: () => set({ address: null }),
+
+  disconnect: () => set({ address: null, ethBalance: 0, chainId: null }),
+
+  refreshBalance: async () => {
+    const provider = getProvider();
+    const { address } = get();
+    if (!provider || !address) return;
+    try {
+      set({ ethBalance: await fetchBalance(provider, address) });
+    } catch {
+      /* keep last known balance */
+    }
+  },
 }));
