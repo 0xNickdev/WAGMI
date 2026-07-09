@@ -42,6 +42,25 @@ async function fetchBalance(provider: Eip1193Provider, address: string): Promise
   return Number(BigInt(wei)) / 1e18;
 }
 
+// True when the wallet reports it doesn't know the chain. MetaMask surfaces
+// this as code 4902, but mobile/other wallets nest it or only say so in the
+// message ("Unrecognized chain ID …"), so check all three shapes.
+function isUnrecognizedChain(err: unknown): boolean {
+  const e = err as {
+    code?: number;
+    message?: string;
+    data?: { originalError?: { code?: number } };
+  };
+  return (
+    e.code === 4902 ||
+    e.data?.originalError?.code === 4902 ||
+    /unrecognized chain/i.test(e.message ?? "")
+  );
+}
+
+/* Best-effort: switch to Robinhood Chain, adding it to the wallet if needed.
+   Never throws — with placeholder RPC params the add can legitimately fail,
+   and the UI handles that via the wrong-network indicator instead. */
 async function ensureChain(provider: Eip1193Provider) {
   try {
     await provider.request({
@@ -49,8 +68,8 @@ async function ensureChain(provider: Eip1193Provider) {
       params: [{ chainId: CHAIN_ID_HEX }],
     });
   } catch (err) {
-    // 4902: chain not added to the wallet yet
-    if ((err as { code?: number }).code === 4902) {
+    if (!isUnrecognizedChain(err)) return;
+    try {
       await provider.request({
         method: "wallet_addEthereumChain",
         params: [
@@ -63,8 +82,12 @@ async function ensureChain(provider: Eip1193Provider) {
           },
         ],
       });
-    } else {
-      throw err;
+      await provider.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: CHAIN_ID_HEX }],
+      });
+    } catch {
+      /* wallet stays on its current chain; ConnectButton shows the switch prompt */
     }
   }
 }
