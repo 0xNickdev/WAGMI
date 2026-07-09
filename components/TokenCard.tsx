@@ -13,7 +13,7 @@ export function TokenCard({ token, rank }: { token: Token; rank?: number }) {
       className="group glass card-shine rounded-2xl p-4 h-full flex flex-col gap-3 transition-all duration-200 hover:border-gold/40 hover:-translate-y-0.5 hover:glow-gold"
     >
       <div className="flex items-center gap-3">
-        <TokenLogo symbol={token.symbol} gradient={token.logoColor} size={44} />
+        <TokenLogo symbol={token.symbol} gradient={token.logoColor} src={token.logoUrl} size={44} />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5">
             <span className="font-semibold truncate">{token.name}</span>
@@ -69,7 +69,7 @@ export function TokenRow({ token, rank }: { token: Token; rank: number }) {
     >
       <span className="w-6 text-center text-sm font-mono text-faint">{rank + 1}</span>
       <div className="flex items-center gap-3 min-w-0">
-        <TokenLogo symbol={token.symbol} gradient={token.logoColor} size={36} />
+        <TokenLogo symbol={token.symbol} gradient={token.logoColor} src={token.logoUrl} size={36} />
         <div className="min-w-0">
           <div className="font-medium truncate group-hover:text-gold transition-colors">{token.name}</div>
           <div className="text-xs text-faint font-mono">${token.symbol}</div>

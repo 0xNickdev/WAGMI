@@ -94,7 +94,7 @@ export function PodiumCard({ token, rank, metric }: Props) {
           </span>
         </div>
 
-        <TokenLogo symbol={token.symbol} gradient={token.logoColor} size={rank === 1 ? 56 : 48} />
+        <TokenLogo symbol={token.symbol} gradient={token.logoColor} src={token.logoUrl} size={rank === 1 ? 56 : 48} />
 
         <div>
           <div className="font-bold text-text leading-tight">{token.name}</div>

@@ -53,6 +53,7 @@ export interface Token {
   symbol: string;
   description: string;
   logoColor: string; // gradient seed
+  logoUrl?: string; // permanent ipfs:// or https URL of the uploaded logo
   socials: TokenSocials;
 
   createdAt: number;

@@ -34,7 +34,7 @@ export function TokenHeader({ token }: Props) {
     >
       {/* Top row: logo + name + socials */}
       <div className="flex flex-wrap items-start gap-4">
-        <TokenLogo symbol={token.symbol} gradient={token.logoColor} size={56} className="shrink-0" />
+        <TokenLogo symbol={token.symbol} gradient={token.logoColor} src={token.logoUrl} size={56} className="shrink-0" />
 
         <div className="flex-1 min-w-0">
           {/* Name + verified badge */}

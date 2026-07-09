@@ -90,7 +90,7 @@ function LeaderboardRow({
 
         {/* token info */}
         <div className="flex items-center gap-3 min-w-0">
-          <TokenLogo symbol={token.symbol} gradient={token.logoColor} size={rank === 1 ? 40 : 34} />
+          <TokenLogo symbol={token.symbol} gradient={token.logoColor} src={token.logoUrl} size={rank === 1 ? 40 : 34} />
           <div className="min-w-0">
             <div
               className={cn(

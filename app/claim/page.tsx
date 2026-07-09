@@ -143,7 +143,7 @@ function PositionRow({
         claimed && "opacity-40",
       )}
     >
-      <TokenLogo symbol={pos.token.symbol} gradient={pos.token.logoColor} size={40} />
+      <TokenLogo symbol={pos.token.symbol} gradient={pos.token.logoColor} src={pos.token.logoUrl} size={40} />
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5">

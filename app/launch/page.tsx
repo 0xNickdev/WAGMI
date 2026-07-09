@@ -14,6 +14,7 @@ import { StepTax } from "@/components/launch/StepTax";
 import { LivePreview } from "@/components/launch/LivePreview";
 import { SuccessScreen } from "@/components/launch/SuccessScreen";
 import { shortAddr } from "@/lib/utils";
+import { uploadLogo } from "@/lib/upload";
 
 // ── Step metadata (Moonshill V1: fill details → taxes → launch) ────────────────
 const STEPS = [
@@ -146,6 +147,10 @@ export default function LaunchPage() {
   async function handleDeploy() {
     if (!valid) { setShowErrors(true); return; }
     setDeploying(true);
+    // Pin the logo to IPFS so it stays retrievable forever; the returned
+    // ipfs:// URI goes into the token metadata on the real deploy call.
+    const logoUri = state.logoFile ? await uploadLogo(state.logoFile) : null;
+    console.info("Token logo pinned:", logoUri ?? "(pinning not configured)");
     await new Promise((r) => setTimeout(r, 1800));
     setDeploying(false);
     setDeployed(true);
