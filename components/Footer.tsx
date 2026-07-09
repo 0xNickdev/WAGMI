@@ -44,6 +44,10 @@ export function Footer() {
             no bonding curves — straight to Uniswap V3.
           </p>
           <p className="mt-4 text-xs text-faint">moonshill.money · Robinhood Chain</p>
+          <p className="mt-3 text-[11px] leading-relaxed text-faint max-w-xs">
+            Moonshill is an independent, community-operated protocol. Not affiliated with
+            Robinhood Markets, Inc. or any brokerage.
+          </p>
         </div>
         {COLS.map((col) => (
           <div key={col.title}>

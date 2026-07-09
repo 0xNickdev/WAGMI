@@ -75,9 +75,9 @@ export function Hero() {
           animate="show"
           className="mt-6 text-lg text-muted max-w-2xl mx-auto"
         >
-          Moonshill is a dead-simple ERC20 launchpad on Robinhood Chain. Fixed 1B supply,
-          no presales, no bonding curves — every token launches straight onto Uniswap V3
-          and trades immediately.
+          No bonding curves. No graduation. Real Uniswap V3 liquidity from block one.
+          Moonshill is a dead-simple ERC20 launchpad on Robinhood Chain — fixed 1B supply,
+          launch in under a minute, trading starts immediately.
         </motion.p>
 
         <motion.div
