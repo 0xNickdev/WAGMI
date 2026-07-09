@@ -12,6 +12,7 @@ import { Menu, X, Rocket } from "lucide-react";
 const LINKS = [
   { href: "/explore", label: "Explore" },
   { href: "/#how", label: "How It Works" },
+  { href: "/docs", label: "Docs" },
 ];
 
 export function Navbar() {

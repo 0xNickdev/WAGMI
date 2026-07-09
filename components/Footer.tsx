@@ -14,17 +14,12 @@ const COLS = [
     title: "Learn",
     links: [
       { label: "How It Works", href: "/#how" },
-      { label: "Docs", href: "#" },
+      { label: "Docs", href: "/docs" },
     ],
   },
   {
     title: "Community",
-    links: [
-      { label: "X (Twitter)", href: "#" },
-      { label: "Telegram", href: "#" },
-      { label: "Discord", href: "#" },
-      { label: "Docs", href: "#" },
-    ],
+    links: [{ label: "X (Twitter)", href: "https://x.com/moonshill" }],
   },
 ];
 
