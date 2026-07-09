@@ -348,7 +348,7 @@ export default function LaunchPage() {
                           <ReviewRow label="Pool" value="Uniswap V3" />
                         </div>
                         <p className="mt-4 text-xs text-faint">
-                          Creator wallet receives your share of LP fees, future tax distributions and rewards.
+                          Creator wallet receives 40% of all LP fees your token generates (60% funds the protocol treasury), plus future tax distributions and rewards.
                         </p>
                       </>
                     )}

@@ -8,8 +8,7 @@ import { UserRound, Rocket } from "lucide-react";
 
 export const metadata = { title: "Creator Profile — Moonshill" };
 
-// LP fees: 0.3% Uniswap V3 fee tier, creator receives half of the protocol take
-const CREATOR_FEE_SHARE = 0.003 * 0.5;
+import { POOL_FEE, CREATOR_FEE_SHARE } from "@/lib/protocol";
 
 export default async function CreatorPage({
   params,
@@ -23,7 +22,7 @@ export default async function CreatorPage({
   if (created.length === 0) notFound();
 
   const totalVolume = created.reduce((s, t) => s + t.volume24h, 0);
-  const lpFees = totalVolume * CREATOR_FEE_SHARE;
+  const lpFees = totalVolume * POOL_FEE * CREATOR_FEE_SHARE;
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10 sm:py-14">

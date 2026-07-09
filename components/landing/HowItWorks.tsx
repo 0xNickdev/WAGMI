@@ -23,7 +23,7 @@ const STEPS = [
   {
     icon: ArrowLeftRight,
     title: "Trading is live",
-    body: "No presale, no bonding curve, no migration wait. LP fees split automatically between you and the protocol.",
+    body: "No presale, no bonding curve, no migration wait. You earn 40% of every LP fee your token generates — forever.",
     tone: "text-up",
   },
 ];

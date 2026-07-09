@@ -127,7 +127,7 @@ export function Hero() {
           className="mt-6 inline-flex items-center gap-1.5 text-xs text-faint"
         >
           <Zap size={13} className="text-gold" />
-          Deploy an ERC20 with instant Uniswap V3 liquidity — trading starts immediately
+          Creators earn 40% of every LP fee their token generates — forever
         </motion.p>
       </div>
     </section>
