@@ -170,7 +170,6 @@ export default function LaunchPage() {
     dispatch({ type: "SET_FIELD", field: "website", value: "" });
     dispatch({ type: "SET_FIELD", field: "twitter", value: "" });
     dispatch({ type: "SET_FIELD", field: "telegram", value: "" });
-    dispatch({ type: "SET_FIELD", field: "discord", value: "" });
     dispatch({ type: "SET_FIELD", field: "supply", value: 1_000_000_000 });
     dispatch({ type: "SET_FIELD", field: "customSupply", value: false });
     dispatch({ type: "SET_FIELD", field: "buyTax", value: 3 });

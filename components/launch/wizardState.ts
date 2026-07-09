@@ -13,7 +13,6 @@ export interface WizardState {
   website: string;
   twitter: string;
   telegram: string;
-  discord: string;
 
   // Supply is fixed in Moonshill V1 (1B, no minting) — kept for preview components
   customSupply: boolean;
@@ -58,7 +57,6 @@ export const DEFAULT_STATE: WizardState = {
   website: "",
   twitter: "",
   telegram: "",
-  discord: "",
 
   customSupply: false,
   supply: 1_000_000_000,

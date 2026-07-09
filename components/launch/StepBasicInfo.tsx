@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Upload, X, Globe, AtSign, Send, MessageSquare } from "lucide-react";
+import { Upload, X, Globe, AtSign, Send } from "lucide-react";
 import { Field, TextField, TextArea } from "./FormPrimitives";
 import { TokenLogo } from "@/components/ui/TokenLogo";
 import { cn } from "@/lib/utils";
@@ -181,14 +181,6 @@ export function StepBasicInfo({ state, dispatch, errors }: Props) {
               value={state.telegram}
               onChange={(e) => set(dispatch, "telegram", e.target.value)}
               prefix={<Send size={14} />}
-            />
-          </Field>
-          <Field label="Discord (optional)">
-            <TextField
-              placeholder="discord.gg/invite"
-              value={state.discord}
-              onChange={(e) => set(dispatch, "discord", e.target.value)}
-              prefix={<MessageSquare size={14} />}
             />
           </Field>
         </div>
