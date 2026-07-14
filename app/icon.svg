@@ -1,20 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-  <defs>
-    <linearGradient id="gm-moon" x1="8" y1="54" x2="40" y2="10" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#047857"/><stop offset="0.55" stop-color="#10b981"/><stop offset="1" stop-color="#34d399"/>
-    </linearGradient>
-    <linearGradient id="gm-arrow" x1="14" y1="42" x2="56" y2="22" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#10b981"/><stop offset="1" stop-color="#6ee7b7"/>
-    </linearGradient>
-  </defs>
-  <rect x="1" y="1" width="62" height="62" rx="16" fill="#0C1310"/>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="15.5" stroke="#34d399" stroke-opacity="0.22"/>
-  <g transform="rotate(-45 32 32)">
-    <path d="M24 9 Q2 32 24 55 Q12.5 32 24 9 Z" fill="url(#gm-moon)"/>
-    <path d="M24 10 L24 54" stroke="#34d399" stroke-opacity="0.55" stroke-width="1.6" stroke-linecap="round"/>
-    <path d="M15 32 L48 32" stroke="url(#gm-arrow)" stroke-width="3.4" stroke-linecap="round"/>
-    <path d="M46 25.8 L57 32 L46 38.2 L49.5 32 Z" fill="#6ee7b7"/>
-    <path d="M15.5 32 L9.5 26.5 M15.5 32 L9.5 37.5" stroke="#10b981" stroke-width="2.6" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+  <rect width="256" height="256" rx="52" fill="#0B0B0B"/>
+  <g transform="rotate(-45 128 128)">
+    <g transform="translate(7 7)" opacity="0.9"><path d="M96 36 Q8 128 96 220 Q50 128 96 36 Z" fill="#1EA366"/></g>
+    <path d="M96 36 Q8 128 96 220 Q50 128 96 36 Z" fill="#EDE7D6"/>
+    <line x1="96" y1="40" x2="96" y2="216" stroke="#EDE7D6" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+    <line x1="58" y1="128" x2="188" y2="128" stroke="#1EA366" stroke-width="11" stroke-linecap="round"/>
+    <path d="M182 104 L226 128 L182 152 L196 128 Z" fill="#EDE7D6"/>
+    <path d="M60 128 L38 106 M60 128 L38 150" stroke="#EDE7D6" stroke-width="9" stroke-linecap="round"/>
   </g>
-  <path d="M15 10 l1.2 3 3 1.2 -3 1.2 -1.2 3 -1.2 -3 -3 -1.2 3 -1.2 Z" fill="#6ee7b7" fill-opacity="0.85"/>
+  <path d="M64 44 l2.2 5.4 5.4 2.2 -5.4 2.2 -2.2 5.4 -2.2 -5.4 -5.4 -2.2 5.4 -2.2 Z" fill="#EDE7D6"/>
+  <circle cx="212" cy="204" r="2.4" fill="#1EA366"/>
+  <circle cx="38" cy="196" r="1.8" fill="#EDE7D6" opacity="0.6"/>
 </svg>
