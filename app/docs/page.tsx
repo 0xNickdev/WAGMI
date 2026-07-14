@@ -194,7 +194,7 @@ export default function DocsPage() {
             <p>
               GreenMoon rewards are not airdropped automatically — holders{" "}
               <strong>stake project tokens to earn tokenized stock rewards</strong>: real
-              equities on Robinhood Chain such as HOOD, AAPL, TSLA, NVDA, MSFT, and SPY.
+              equities on Robinhood Chain such as AAPL, TSLA, NVDA, MSFT, and SPY.
             </p>
             <ul>
               <li>
