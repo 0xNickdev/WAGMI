@@ -3,7 +3,6 @@
 export function Logo({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 256 256" fill="none" aria-hidden>
-      <rect width="256" height="256" rx="52" fill="#0B0B0B" />
       <g transform="rotate(-45 128 128)">
         <g transform="translate(7 7)" opacity="0.9">
           <path d="M96 36 Q8 128 96 220 Q50 128 96 36 Z" fill="#1EA366" />
