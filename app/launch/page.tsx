@@ -11,16 +11,18 @@ import { cn } from "@/lib/utils";
 import { wizardReducer, DEFAULT_STATE, isStepValid, validateStep } from "@/components/launch/wizardState";
 import { StepBasicInfo } from "@/components/launch/StepBasicInfo";
 import { StepTax } from "@/components/launch/StepTax";
+import { StepRewards } from "@/components/launch/StepRewards";
 import { LivePreview } from "@/components/launch/LivePreview";
 import { SuccessScreen } from "@/components/launch/SuccessScreen";
 import { shortAddr } from "@/lib/utils";
 import { uploadLogo } from "@/lib/upload";
 
-// ── Step metadata (Moonshill V1: fill details → taxes → launch) ────────────────
+// ── Step metadata (GreenMoon: details → taxes → stock rewards → launch) ────────
 const STEPS = [
   { number: 1, label: "Basic Info", short: "Info" },
   { number: 2, label: "Taxes", short: "Taxes" },
-  { number: 3, label: "Review & Launch", short: "Launch" },
+  { number: 3, label: "Stake to Earn Rewards", short: "Rewards" },
+  { number: 4, label: "Review & Launch", short: "Launch" },
 ];
 
 const TOTAL_STEPS = STEPS.length;
@@ -176,6 +178,11 @@ export default function LaunchPage() {
     dispatch({ type: "SET_FIELD", field: "sellTax", value: 5 });
     dispatch({ type: "SET_FIELD", field: "buyBeforeLaunch", value: false });
     dispatch({ type: "SET_FIELD", field: "creatorBuyEth", value: 0.5 });
+    dispatch({ type: "SET_FIELD", field: "rewardStock", value: "HOOD" });
+    dispatch({ type: "SET_FIELD", field: "rewardAllocationPct", value: 5 });
+    dispatch({ type: "SET_FIELD", field: "stakingStartDays", value: 0 });
+    dispatch({ type: "SET_FIELD", field: "rewardDurationDays", value: 90 });
+    dispatch({ type: "SET_FIELD", field: "rewardDescription", value: "" });
   }
 
   return (
@@ -190,7 +197,7 @@ export default function LaunchPage() {
           Launch Your <span className="text-gradient-gold">Token</span>
         </h1>
         <p className="text-muted mt-2">
-          Three steps, under a minute. Fixed 1B supply, straight to Uniswap V3 — trading starts immediately.
+          Four quick steps. Fixed 1B supply, straight to Uniswap V3 — trading starts immediately.
         </p>
       </div>
 
@@ -276,6 +283,9 @@ export default function LaunchPage() {
                       <StepTax state={state} dispatch={dispatch} errors={errors} />
                     )}
                     {step === 3 && (
+                      <StepRewards state={state} dispatch={dispatch} errors={errors} />
+                    )}
+                    {step === 4 && (
                       <>
                         {/* Buy Before Launch */}
                         <button
@@ -339,6 +349,12 @@ export default function LaunchPage() {
                           <ReviewRow label="Supply" value="1,000,000,000 (fixed)" />
                           <ReviewRow label="Buy Tax" value={`${state.buyTax.toFixed(1)}%`} />
                           <ReviewRow label="Sell Tax" value={`${state.sellTax.toFixed(1)}%`} />
+                          <ReviewRow label="Reward Asset" value={`${state.rewardStock} (tokenized stock)`} />
+                          <ReviewRow label="Reward Allocation" value={`${state.rewardAllocationPct}% of supply`} />
+                          <ReviewRow
+                            label="Staking"
+                            value={`${state.stakingStartDays === 0 ? "At launch" : `+${state.stakingStartDays}d`} · ${state.rewardDurationDays}d duration`}
+                          />
                           <ReviewRow
                             label="Buy Before Launch"
                             value={state.buyBeforeLaunch ? `${state.creatorBuyEth} ETH` : "Off"}

@@ -75,7 +75,7 @@ function DisconnectedView() {
           </h1>
 
           <p className="mt-5 text-muted text-lg max-w-xl mx-auto leading-relaxed">
-            Every trade on Moonshill funds the treasury. Eligible token holders receive ETH distributions
+            Every trade on GreenMoon funds the treasury. Eligible token holders receive ETH distributions
             every epoch — automatically, transparently, on-chain.
           </p>
 
@@ -352,7 +352,7 @@ function ConnectedView() {
             <Wallet size={36} className="text-faint mx-auto mb-3" />
             <div className="font-semibold text-muted">No positions found</div>
             <p className="text-sm text-faint mt-1 max-w-xs mx-auto">
-              Hold tokens on Moonshill for a full epoch window to become eligible for rewards.
+              Hold tokens on GreenMoon for a full epoch window to become eligible for rewards.
             </p>
           </CardBody>
         )}

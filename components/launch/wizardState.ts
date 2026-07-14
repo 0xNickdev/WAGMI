@@ -14,7 +14,7 @@ export interface WizardState {
   twitter: string;
   telegram: string;
 
-  // Supply is fixed in Moonshill V1 (1B, no minting) — kept for preview components
+  // Supply is fixed in GreenMoon V1 (1B, no minting) — kept for preview components
   customSupply: boolean;
   supply: number;
 
@@ -22,7 +22,14 @@ export interface WizardState {
   buyTax: number;
   sellTax: number;
 
-  // Step 3 – Launch (optional creator buy before public trading)
+  // Step 3 – Stake to Earn rewards (tokenized stocks)
+  rewardStock: string;
+  rewardAllocationPct: number;
+  stakingStartDays: number;
+  rewardDurationDays: number;
+  rewardDescription: string;
+
+  // Step 4 – Launch (optional creator buy before public trading)
   buyBeforeLaunch: boolean;
   creatorBuyEth: number;
 
@@ -39,11 +46,11 @@ export interface WizardState {
 }
 
 export const GRADIENTS = [
-  "#d6ff54,#aef136",
+  "#10b981,#6ee7b7",
   "#8b5cf6,#22d3ee",
   "#00c805,#22d3ee",
-  "#ff5000,#aef136",
-  "#d6ff54,#8b5cf6",
+  "#ff5000,#6ee7b7",
+  "#10b981,#8b5cf6",
   "#22d3ee,#00c805",
 ];
 
@@ -64,6 +71,12 @@ export const DEFAULT_STATE: WizardState = {
   buyTax: 3,
   sellTax: 5,
 
+  rewardStock: "HOOD",
+  rewardAllocationPct: 5,
+  stakingStartDays: 0,
+  rewardDurationDays: 90,
+  rewardDescription: "",
+
   buyBeforeLaunch: false,
   creatorBuyEth: 0.5,
 
@@ -76,6 +89,16 @@ export const DEFAULT_STATE: WizardState = {
   rewardAsset: "ETH",
   externalAddress: "",
 };
+
+// Tokenized stocks available as staking rewards on Robinhood Chain
+export const TOKENIZED_STOCKS = [
+  { symbol: "HOOD", name: "Robinhood" },
+  { symbol: "AAPL", name: "Apple" },
+  { symbol: "TSLA", name: "Tesla" },
+  { symbol: "NVDA", name: "Nvidia" },
+  { symbol: "MSFT", name: "Microsoft" },
+  { symbol: "SPY", name: "S&P 500" },
+] as const;
 
 export type WizardAction =
   | { type: "SET_FIELD"; field: keyof WizardState; value: WizardState[keyof WizardState] }
@@ -95,7 +118,7 @@ export function wizardReducer(state: WizardState, action: WizardAction): WizardS
   }
 }
 
-// Per-step validation (Moonshill V1: 1 Basic Info · 2 Taxes · 3 Launch)
+// Per-step validation (GreenMoon: 1 Basic Info · 2 Taxes · 3 Rewards · 4 Launch)
 export function validateStep(step: number, s: WizardState): string[] {
   const errs: string[] = [];
   if (step === 1) {
@@ -107,6 +130,11 @@ export function validateStep(step: number, s: WizardState): string[] {
     if (s.sellTax > 10) errs.push("Sell tax cannot exceed 10%.");
   }
   if (step === 3) {
+    if (!s.rewardStock) errs.push("Select a tokenized stock reward asset.");
+    if (s.rewardAllocationPct < 1 || s.rewardAllocationPct > 30)
+      errs.push("Reward allocation must be between 1% and 30%.");
+  }
+  if (step === 4) {
     if (s.buyBeforeLaunch && s.creatorBuyEth <= 0)
       errs.push("Enter the ETH amount for your pre-launch buy.");
   }

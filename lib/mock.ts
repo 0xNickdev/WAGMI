@@ -67,12 +67,12 @@ const NAMES: [string, string][] = [
 ];
 
 const GRADIENTS = [
-  "#d6ff54,#aef136",
+  "#10b981,#6ee7b7",
   "#8b5cf6,#22d3ee",
   "#00c805,#0a8f3c",
-  "#ff5000,#aef136",
+  "#ff5000,#6ee7b7",
   "#22d3ee,#8b5cf6",
-  "#e7ff8f,#d6ff54",
+  "#34d399,#10b981",
   "#ff6ec7,#8b5cf6",
   "#00c805,#22d3ee",
 ];
@@ -103,7 +103,7 @@ function buildToken(i: number): Token {
   const trend = rng() > 0.42 ? 1 : -1;
   const priceChange24h = Number((trend > 0 ? rng() * 260 + 1 : -(rng() * 55 + 2)).toFixed(2));
   const price = Number((rng() * 0.012 + 0.0000004).toFixed(8));
-  const supply = 1_000_000_000; // Moonshill V1: fixed supply, no minting
+  const supply = 1_000_000_000; // GreenMoon V1: fixed supply, no minting
   const marketCap = price * supply * (rng() * 4 + 0.5);
   const liquidity = marketCap * (rng() * 0.25 + 0.08);
   const volume24h = marketCap * (rng() * 1.4 + 0.05);
@@ -114,6 +114,7 @@ function buildToken(i: number): Token {
   const holderPct = 100 - burnPct - devPct;
   const freqs = ["20m", "1h", "6h", "24h"] as const;
   const assets = ["ETH", "SAME_TOKEN", "EXTERNAL"] as const;
+  const stocks = ["HOOD", "AAPL", "TSLA", "NVDA", "MSFT", "SPY"] as const;
 
   return {
     address,
@@ -122,10 +123,10 @@ function buildToken(i: number): Token {
     description: DESCRIPTIONS[i % DESCRIPTIONS.length],
     logoColor: GRADIENTS[i % GRADIENTS.length],
     socials: {
-      website: "https://moonshill.money",
-      twitter: "https://x.com/moonshill",
-      telegram: "https://t.me/moonshill",
-      discord: rng() > 0.5 ? "https://discord.gg/moonshill" : undefined,
+      website: "https://greenmoon.money",
+      twitter: "https://x.com/greenmoon",
+      telegram: "https://t.me/greenmoon",
+      discord: rng() > 0.5 ? "https://discord.gg/greenmoon" : undefined,
     },
     createdAt: Date.now() - ageHours * 3600_000,
     creator: hexAddr(rng),
@@ -148,6 +149,7 @@ function buildToken(i: number): Token {
       frequency: freqs[Math.floor(rng() * freqs.length)],
       asset: assets[Math.floor(rng() * assets.length)],
     },
+    rewardStock: stocks[Math.floor(rng() * stocks.length)],
     trendingScore: Number((volume24h / 1000 + (priceChange24h > 0 ? priceChange24h : 0) * 50).toFixed(0)),
     rewardsDistributedUsd: marketCap * (rng() * 0.03),
     nextDistributionAt: Date.now() + Math.floor(rng() * 3600_000) + 60_000,

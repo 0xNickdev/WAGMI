@@ -45,7 +45,7 @@ export function TokenHeader({ token }: Props) {
             <span className="font-mono text-lg text-faint leading-none">${token.symbol}</span>
             <Badge tone="gold" className="flex items-center gap-1">
               <ShieldCheck size={10} />
-              Verified Moonshill token
+              Verified GreenMoon token
             </Badge>
           </div>
 

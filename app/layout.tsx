@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Moonshill — Simple ERC20 Launchpad on Robinhood Chain",
+  title: "GreenMoon — Simple ERC20 Launchpad on Robinhood Chain",
   description:
     "Launch a token in under a minute. Fixed 1B supply, no presales, no bonding curves — straight to Uniswap V3. Trading starts immediately.",
 };

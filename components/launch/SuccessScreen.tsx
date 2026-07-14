@@ -18,7 +18,7 @@ interface Props {
 const CONFETTI = Array.from({ length: 28 }, (_, i) => ({
   id: i,
   x: Math.sin(i * 1.37) * 50 + 50,
-  color: i % 4 === 0 ? "#d6ff54" : i % 4 === 1 ? "#8b5cf6" : i % 4 === 2 ? "#00c805" : "#aef136",
+  color: i % 4 === 0 ? "#10b981" : i % 4 === 1 ? "#8b5cf6" : i % 4 === 2 ? "#00c805" : "#6ee7b7",
   size: 6 + (i % 5) * 2,
   delay: (i * 0.07) % 0.8,
   duration: 1.2 + (i % 5) * 0.3,

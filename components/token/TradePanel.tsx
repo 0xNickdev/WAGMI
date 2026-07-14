@@ -193,7 +193,7 @@ export function TradePanel({ token }: Props) {
         )}
 
         <p className="text-[10px] text-faint text-center leading-relaxed">
-          Simulated trade · Robinhood Chain · Moonshill Router v2
+          Simulated trade · Robinhood Chain · GreenMoon Router v2
         </p>
       </div>
     </div>

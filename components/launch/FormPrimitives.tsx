@@ -93,7 +93,7 @@ export function Slider({
   max = 100,
   step = 1,
   className,
-  accentColor = "#d6ff54",
+  accentColor = "#10b981",
 }: SliderProps) {
   const pct = ((value - min) / (max - min)) * 100;
 
@@ -210,7 +210,7 @@ export function Segmented<T extends string>({
           className={cn(
             "flex-1 rounded-lg py-2 px-3 text-sm font-medium transition-all duration-200",
             value === opt.value
-              ? "bg-gold text-black shadow-[0_2px_8px_-2px_rgba(214,255,84,0.5)]"
+              ? "bg-gold text-black shadow-[0_2px_8px_-2px_rgba(16,185,129,0.5)]"
               : "text-muted hover:text-text",
           )}
         >

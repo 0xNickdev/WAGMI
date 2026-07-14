@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { formatUsd, shortAddr } from "@/lib/utils";
 import { UserRound, Rocket } from "lucide-react";
 
-export const metadata = { title: "Creator Profile — Moonshill" };
+export const metadata = { title: "Creator Profile — GreenMoon" };
 
 import { POOL_FEE, CREATOR_FEE_SHARE } from "@/lib/protocol";
 

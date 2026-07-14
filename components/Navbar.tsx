@@ -11,6 +11,7 @@ import { Menu, X, Rocket } from "lucide-react";
 
 const LINKS = [
   { href: "/explore", label: "Explore" },
+  { href: "/stake", label: "Stake & Earn" },
   { href: "/#how", label: "How It Works" },
   { href: "/docs", label: "Docs" },
 ];
@@ -41,7 +42,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Logo size={30} />
             <span className="font-bold text-lg tracking-tight">
-              MOON<span className="text-gradient-gold">SHILL</span>
+              GREEN<span className="text-gradient-gold">MOON</span>
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-1">

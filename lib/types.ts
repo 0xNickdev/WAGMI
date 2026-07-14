@@ -59,6 +59,7 @@ export interface Token {
   createdAt: number;
   creator: string;
   poolAddress?: string; // Uniswap V3 pool (set by indexer; enables GeckoTerminal embed)
+  rewardStock: string; // tokenized stock stakers earn (Stake to Earn)
 
   price: number;
   priceChange24h: number;

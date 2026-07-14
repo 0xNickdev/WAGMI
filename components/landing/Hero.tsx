@@ -1,134 +1,97 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { formatUsd } from "@/lib/utils";
 import { PLATFORM_STATS } from "@/lib/mock";
-import { Rocket, Compass, Zap } from "lucide-react";
+import { Rocket, BookOpen } from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 14 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { delay: i * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
 
+/* Compact, dashboard-style hero (launchhood-like): short pitch + actions,
+   the token board right below is the real hero of the page. */
 export function Hero() {
-  const { scrollY } = useScroll();
-  const glowY = useTransform(scrollY, [0, 700], [0, 140]);
-  const glowOpacity = useTransform(scrollY, [0, 500], [1, 0.4]);
-
   return (
-    <section className="relative overflow-hidden grid-bg">
-      <motion.div
+    <section className="relative overflow-hidden">
+      <div
         aria-hidden
-        style={{ y: glowY, opacity: glowOpacity }}
-        className="absolute inset-0 -z-10 pointer-events-none"
-      >
-        <div
-          className="absolute left-1/2 top-[-28%] -translate-x-1/2 w-[84rem] h-[46rem]"
-          style={{ background: "radial-gradient(closest-side, rgba(214,255,84,0.10), transparent 70%)" }}
-        />
-        <div
-          className="absolute left-[-8%] top-[30%] size-[26rem]"
-          style={{ background: "radial-gradient(closest-side, rgba(0,200,5,0.06), transparent 70%)" }}
-        />
-        <div
-          className="absolute right-[-6%] top-[10%] size-[24rem]"
-          style={{ background: "radial-gradient(closest-side, rgba(157,199,44,0.09), transparent 70%)" }}
-        />
-      </motion.div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-bg" />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-24 text-center">
-        <motion.div
-          custom={0}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-xs font-medium text-muted mb-7"
-        >
-          <span className="size-1.5 rounded-full bg-up live-dot" />
-          Live on Robinhood Chain
-          <span className="text-faint">·</span>
-          <span className="text-gold">No bonding curves</span>
-        </motion.div>
+        className="absolute left-1/2 top-[-60%] -translate-x-1/2 w-[70rem] h-[30rem] -z-10 pointer-events-none"
+        style={{ background: "radial-gradient(closest-side, rgba(16,185,129,0.09), transparent 70%)" }}
+      />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-10 sm:pt-14 pb-6">
+        <div className="flex flex-col lg:flex-row lg:items-end gap-6 justify-between">
+          <div className="max-w-2xl">
+            <motion.div
+              custom={0}
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              className="inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-xs font-medium text-muted mb-4"
+            >
+              <span className="size-1.5 rounded-full bg-up live-dot" />
+              Live on Robinhood Chain
+              <span className="text-faint">·</span>
+              <span className="text-gold">No bonding curves</span>
+            </motion.div>
 
-        <motion.h1
-          custom={1}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]"
-        >
-          Launch a token
-          <br />
-          <span className="text-gradient-gold">in under a minute.</span>
-        </motion.h1>
+            <motion.h1
+              custom={1}
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              className="text-3xl sm:text-5xl font-bold tracking-tight leading-[1.08]"
+            >
+              Launch a token <span className="text-gradient-gold">in under a minute.</span>
+            </motion.h1>
 
-        <motion.p
-          custom={2}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="mt-6 text-lg text-muted max-w-2xl mx-auto"
-        >
-          No bonding curves. No graduation. Real Uniswap V3 liquidity from block one.
-          Moonshill is a dead-simple ERC20 launchpad on Robinhood Chain — fixed 1B supply,
-          launch in under a minute, trading starts immediately.
-        </motion.p>
+            <motion.p
+              custom={2}
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              className="mt-3 text-muted max-w-xl"
+            >
+              Real Uniswap V3 liquidity from block one. Stake to earn tokenized stock
+              rewards. Creators keep 40% of every LP fee — forever.
+            </motion.p>
 
-        <motion.div
-          custom={3}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3"
-        >
-          <Button href="/launch" size="lg" className="w-full sm:w-auto">
-              <Rocket size={18} />
-              Launch Your Token
-            </Button>
-          <Button href="/explore" variant="outline" size="lg" className="w-full sm:w-auto">
-              <Compass size={18} />
-              Explore Tokens
-            </Button>
-        </motion.div>
+            <motion.div
+              custom={3}
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              className="mt-6 flex flex-wrap items-center gap-3"
+            >
+              <Button href="/launch" size="lg">
+                <Rocket size={17} /> Launch Your Token
+              </Button>
+              <Button href="/docs" variant="outline" size="lg">
+                <BookOpen size={16} /> Docs
+              </Button>
+            </motion.div>
+          </div>
 
-        <motion.div
-          custom={4}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-px rounded-2xl overflow-hidden glass max-w-4xl mx-auto"
-        >
-          <HeroStat label="Tokens Launched" value={PLATFORM_STATS.tokensLaunched} />
-          <HeroStat
-            label="Total Volume"
-            value={PLATFORM_STATS.totalVolumeUsd}
-            fmt={(n) => formatUsd(n)}
-          />
-          <HeroStat
-            label="LP Fees Earned"
-            value={PLATFORM_STATS.rewardsDistributedUsd}
-            fmt={(n) => formatUsd(n)}
-            highlight
-          />
-          <HeroStat label="Traders 24h" value={PLATFORM_STATS.activeTraders24h} />
-        </motion.div>
-
-        <motion.p
-          custom={5}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="mt-6 inline-flex items-center gap-1.5 text-xs text-faint"
-        >
-          <Zap size={13} className="text-gold" />
-          Creators earn 40% of every LP fee their token generates — forever
-        </motion.p>
+          <motion.div
+            custom={4}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-px rounded-2xl overflow-hidden glass shrink-0"
+          >
+            <HeroStat label="Tokens" value={PLATFORM_STATS.tokensLaunched} />
+            <HeroStat label="Volume" value={PLATFORM_STATS.totalVolumeUsd} fmt={formatUsd} />
+            <HeroStat label="LP Fees Paid" value={PLATFORM_STATS.rewardsDistributedUsd} fmt={formatUsd} highlight />
+            <HeroStat label="Traders 24h" value={PLATFORM_STATS.activeTraders24h} />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -146,11 +109,11 @@ function HeroStat({
   highlight?: boolean;
 }) {
   return (
-    <div className="bg-bg-elevated/40 p-5">
-      <div className={`text-2xl sm:text-3xl font-bold tabular ${highlight ? "text-gradient-gold" : ""}`}>
+    <div className="bg-bg-elevated/40 px-5 py-3.5 min-w-[130px]">
+      <div className={`text-lg font-bold tabular ${highlight ? "text-gradient-gold" : ""}`}>
         <AnimatedNumber value={value} format={fmt} />
       </div>
-      <div className="text-xs text-faint mt-1 uppercase tracking-wider">{label}</div>
+      <div className="text-[10px] text-faint mt-0.5 uppercase tracking-wider">{label}</div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-/* Moonshill protocol economics — single source of truth for fee numbers
+/* GreenMoon protocol economics — single source of truth for fee numbers
    shown in the UI. Must match the fee-collector contract when it ships. */
 
 // Uniswap V3 pool fee tier every token launches with (1%)

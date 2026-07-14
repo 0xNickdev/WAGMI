@@ -4,7 +4,7 @@ export function Logo({ size = 32 }: { size?: number }) {
   return (
     <Image
       src="/logo.png"
-      alt="Moonshill"
+      alt="GreenMoon"
       width={size}
       height={size}
       priority

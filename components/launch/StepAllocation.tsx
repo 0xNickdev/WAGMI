@@ -55,7 +55,7 @@ export function StepAllocation({ state, dispatch, errors }: Props) {
               min={0}
               max={100}
               step={1}
-              accentColor="#aef136"
+              accentColor="#6ee7b7"
             />
             <div className="flex justify-between text-xs text-faint">
               <span>0%</span>

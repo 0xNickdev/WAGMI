@@ -8,7 +8,7 @@ import { ArrowRight, Landmark } from "lucide-react";
 export function TreasuryTeaser() {
   const t = getTreasury();
   const split = [
-    { label: "ETH", value: t.ethHeld * 3200, color: "#d6ff54" },
+    { label: "ETH", value: t.ethHeld * 3200, color: "#10b981" },
     { label: "USDT", value: t.usdtHeld, color: "#00c805" },
     { label: "USDC", value: t.usdcHeld, color: "#22d3ee" },
   ];

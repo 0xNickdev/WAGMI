@@ -12,7 +12,7 @@ import { Landmark, TrendingUp, Coins, CalendarClock, ArrowRight } from "lucide-r
 import { Button } from "@/components/ui/Button";
 
 export const metadata = {
-  title: "Treasury — Moonshill",
+  title: "Treasury — GreenMoon",
   description: "Protocol treasury stats, asset breakdown, and epoch distribution history.",
 };
 
@@ -21,7 +21,7 @@ export default function TreasuryPage() {
 
   const ethUsd = t.ethHeld * 3200;
   const slices = [
-    { label: "ETH", value: ethUsd, color: "#d6ff54" },
+    { label: "ETH", value: ethUsd, color: "#10b981" },
     { label: "USDT", value: t.usdtHeld, color: "#00c805" },
     { label: "USDC", value: t.usdcHeld, color: "#22d3ee" },
   ];

@@ -3,9 +3,9 @@ import { getTokens } from "@/lib/mock";
 import { ExploreClient } from "@/components/explore/ExploreClient";
 
 export const metadata = {
-  title: "Explore Tokens — Moonshill",
+  title: "Explore Tokens — GreenMoon",
   description:
-    "Discover every token on the Moonshill launchpad. Filter by trending, new, or top gainers. Search, sort, and find your next trade.",
+    "Discover every token on the GreenMoon launchpad. Filter by trending, new, or top gainers. Search, sort, and find your next trade.",
 };
 
 export default function ExplorePage() {
@@ -26,7 +26,7 @@ export default function ExplorePage() {
         <p className="text-muted text-sm sm:text-base mt-1 ml-[52px]">
           Discover, filter, and trade from{" "}
           <span className="text-text font-semibold tabular">{total}</span> tokens
-          live on the Moonshill launchpad.
+          live on the GreenMoon launchpad.
         </p>
       </div>
 

@@ -19,10 +19,10 @@
   --text-muted: #a1a698;
   --text-faint: #6d7264;
 
-  --gold: #d6ff54;
-  --gold-bright: #e7ff8f;
-  --gold-deep: #9dc72c;
-  --amber: #aef136;
+  --gold: #10b981;
+  --gold-bright: #34d399;
+  --gold-deep: #047857;
+  --amber: #6ee7b7;
 
   --up: #00c805;
   --up-dim: #0a8f3c;
@@ -85,7 +85,7 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(60rem 40rem at 75% -10%, rgba(214, 255, 84, 0.08), transparent 60%),
+    radial-gradient(60rem 40rem at 75% -10%, rgba(16, 185, 129, 0.08), transparent 60%),
     radial-gradient(50rem 35rem at 10% 10%, rgba(139, 92, 246, 0.05), transparent 55%),
     radial-gradient(40rem 40rem at 50% 110%, rgba(0, 200, 5, 0.05), transparent 60%);
 }
@@ -94,7 +94,7 @@ body::before {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; border: 2px solid var(--bg); }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
-::selection { background: rgba(214, 255, 84, 0.35); color: #fff; }
+::selection { background: rgba(16, 185, 129, 0.35); color: #fff; }
 
 @layer utilities {
   .glass {
@@ -122,13 +122,13 @@ body::before {
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(214,255,84,0.6), rgba(0,200,5,0.25), transparent 60%);
+    background: linear-gradient(135deg, rgba(16,185,129,0.6), rgba(0,200,5,0.25), transparent 60%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
   }
-  .glow-gold { box-shadow: 0 0 0 1px rgba(214,255,84,0.25), 0 8px 40px -8px rgba(214,255,84,0.35); }
+  .glow-gold { box-shadow: 0 0 0 1px rgba(16,185,129,0.25), 0 8px 40px -8px rgba(16,185,129,0.35); }
   .glow-up { box-shadow: 0 0 0 1px rgba(0,200,5,0.25), 0 8px 30px -10px rgba(0,200,5,0.4); }
   .tabular { font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
   .grid-bg {
@@ -146,7 +146,7 @@ body::before {
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  background: radial-gradient(closest-side, var(--aurora-color, rgba(214, 255, 84, 0.07)), transparent 70%);
+  background: radial-gradient(closest-side, var(--aurora-color, rgba(16, 185, 129, 0.07)), transparent 70%);
   will-change: transform;
   pointer-events: none;
 }
@@ -179,7 +179,7 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 40%, rgba(214, 255, 84, 0.06) 50%, transparent 60%);
+  background: linear-gradient(105deg, transparent 40%, rgba(16, 185, 129, 0.06) 50%, transparent 60%);
   transform: translateX(-120%);
   transition: transform 0.7s ease;
   pointer-events: none;

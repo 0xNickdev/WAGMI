@@ -5,12 +5,12 @@ export function GraffitiTitle() {
         className="text-5xl sm:text-7xl font-black tracking-tight -rotate-2 [transform:skewX(-6deg)]"
         style={{
           fontFamily: "var(--font-sans)",
-          background: "linear-gradient(135deg,#e7ff8f,#d6ff54 40%,#aef136 75%,#ff5000)",
+          background: "linear-gradient(135deg,#34d399,#10b981 40%,#6ee7b7 75%,#ff5000)",
           WebkitBackgroundClip: "text",
           backgroundClip: "text",
           color: "transparent",
           WebkitTextStroke: "1px rgba(0,0,0,0.35)",
-          filter: "drop-shadow(0 4px 0 rgba(0,0,0,0.45)) drop-shadow(0 0 28px rgba(214,255,84,0.45))",
+          filter: "drop-shadow(0 4px 0 rgba(0,0,0,0.45)) drop-shadow(0 0 28px rgba(16,185,129,0.45))",
         }}
       >
         WAGMI&nbsp;BOUNTY

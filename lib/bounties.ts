@@ -66,12 +66,12 @@ function hash(s: string) {
 }
 
 const GRADS = [
-  "#d6ff54,#aef136",
+  "#10b981,#6ee7b7",
   "#8b5cf6,#22d3ee",
   "#00c805,#0a8f3c",
-  "#ff5000,#aef136",
+  "#ff5000,#6ee7b7",
   "#22d3ee,#8b5cf6",
-  "#e7ff8f,#d6ff54",
+  "#34d399,#10b981",
   "#ff6ec7,#8b5cf6",
   "#00c805,#22d3ee",
 ];
