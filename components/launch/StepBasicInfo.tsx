@@ -119,7 +119,7 @@ export function StepBasicInfo({ state, dispatch, errors }: Props) {
 
       {/* Name + Symbol row */}
       <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4">
-        <Field label="Token Name" required error={hasNameError ? "Required" : undefined}>
+        <Field label="Token Name" required error={hasNameError ? "Please fill out this field." : undefined}>
           <TextField
             placeholder="e.g. Moon Inu"
             value={state.name}
@@ -128,7 +128,7 @@ export function StepBasicInfo({ state, dispatch, errors }: Props) {
             maxLength={40}
           />
         </Field>
-        <Field label="Symbol" required error={hasSymbolError ? "Required" : undefined} hint="Max 6 chars">
+        <Field label="Symbol" required error={hasSymbolError ? "Please fill out this field." : undefined} hint="Max 6 chars">
           <TextField
             placeholder="e.g. MOON"
             value={state.symbol}

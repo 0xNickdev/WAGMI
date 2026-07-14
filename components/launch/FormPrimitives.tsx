@@ -19,14 +19,27 @@ interface FieldProps {
 
 export function Field({ label, hint, error, children, required }: FieldProps) {
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="relative flex flex-col gap-1.5">
       <label className="text-sm font-medium text-text">
         {label}
         {required && <span className="text-gold ml-0.5">*</span>}
       </label>
-      {children}
+      <div className={cn(error && "rounded-xl ring-2 ring-down/70 ring-offset-2 ring-offset-bg")}>
+        {children}
+      </div>
       {hint && !error && <p className="text-xs text-faint">{hint}</p>}
-      {error && <p className="text-xs text-down">{error}</p>}
+      {error && (
+        <div className="absolute left-3 top-full z-20 mt-2">
+          {/* caret */}
+          <span className="absolute -top-1 left-6 size-2.5 rotate-45 bg-surface-2 border-l border-t border-border-strong" />
+          <div className="flex items-center gap-2.5 rounded-xl border border-border-strong bg-surface-2 pl-2 pr-3.5 py-2 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.8)]">
+            <span className="grid place-items-center size-6 shrink-0 rounded-md bg-down text-white text-sm font-bold leading-none">
+              !
+            </span>
+            <span className="text-sm text-text whitespace-nowrap">{error}</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
