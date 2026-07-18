@@ -17,7 +17,7 @@ import { SuccessScreen } from "@/components/launch/SuccessScreen";
 import { shortAddr } from "@/lib/utils";
 import { uploadLogo } from "@/lib/upload";
 
-// ── Step metadata (GreenMoon: details → taxes → stock rewards → launch) ────────
+// ── Step metadata (Sketch: details → taxes → stock rewards → launch) ────────
 const STEPS = [
   { number: 1, label: "Basic Info", short: "Info" },
   { number: 2, label: "Taxes", short: "Taxes" },

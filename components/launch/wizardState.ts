@@ -14,7 +14,7 @@ export interface WizardState {
   twitter: string;
   telegram: string;
 
-  // Supply is fixed in GreenMoon V1 (1B, no minting) — kept for preview components
+  // Supply is fixed in Sketch V1 (1B, no minting) — kept for preview components
   customSupply: boolean;
   supply: number;
 
@@ -118,7 +118,7 @@ export function wizardReducer(state: WizardState, action: WizardAction): WizardS
   }
 }
 
-// Per-step validation (GreenMoon: 1 Basic Info · 2 Taxes · 3 Rewards · 4 Launch)
+// Per-step validation (Sketch: 1 Basic Info · 2 Taxes · 3 Rewards · 4 Launch)
 export function validateStep(step: number, s: WizardState): string[] {
   const errs: string[] = [];
   if (step === 1) {

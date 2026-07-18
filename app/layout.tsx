@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GreenMoon — Simple ERC20 Launchpad on Robinhood Chain",
+  title: "Sketch Money — The On-Chain Capital Layer for Robinhood Chain",
   description:
-    "Launch a token in under a minute. Fixed 1B supply, no presales, no bonding curves — straight to Uniswap V3. Trading starts immediately.",
+    "Launch tokens, build communities, stake Sketch, and earn tokenized stock rewards on Robinhood Chain.",
 };
 
 export const viewport: Viewport = {

@@ -103,7 +103,7 @@ function buildToken(i: number): Token {
   const trend = rng() > 0.42 ? 1 : -1;
   const priceChange24h = Number((trend > 0 ? rng() * 260 + 1 : -(rng() * 55 + 2)).toFixed(2));
   const price = Number((rng() * 0.012 + 0.0000004).toFixed(8));
-  const supply = 1_000_000_000; // GreenMoon V1: fixed supply, no minting
+  const supply = 1_000_000_000; // Sketch V1: fixed supply, no minting
   const marketCap = price * supply * (rng() * 4 + 0.5);
   const liquidity = marketCap * (rng() * 0.25 + 0.08);
   const volume24h = marketCap * (rng() * 1.4 + 0.05);
@@ -123,10 +123,10 @@ function buildToken(i: number): Token {
     description: DESCRIPTIONS[i % DESCRIPTIONS.length],
     logoColor: GRADIENTS[i % GRADIENTS.length],
     socials: {
-      website: "https://greenmoon.money",
-      twitter: "https://x.com/greenmoon",
-      telegram: "https://t.me/greenmoon",
-      discord: rng() > 0.5 ? "https://discord.gg/greenmoon" : undefined,
+      website: "https://sketch.money",
+      twitter: "https://x.com/sketch",
+      telegram: "https://t.me/sketch",
+      discord: rng() > 0.5 ? "https://discord.gg/sketch" : undefined,
     },
     createdAt: Date.now() - ageHours * 3600_000,
     creator: hexAddr(rng),

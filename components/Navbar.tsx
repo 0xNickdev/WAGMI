@@ -42,7 +42,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Logo size={30} />
             <span className="font-bold text-lg tracking-tight">
-              GREEN<span className="text-gradient-gold">MOON</span>
+              SKETCH<span className="text-gradient-gold">&nbsp;MONEY</span>
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-1">

@@ -151,7 +151,7 @@ export default function StakePage() {
               )}
             </div>
             <p className="mt-4 text-xs text-faint">
-              Simulated staking · contracts ship with GreenMoon V1 · unstake anytime, no lock-up
+              Simulated staking · contracts ship with Sketch V1 · unstake anytime, no lock-up
             </p>
           </div>
 

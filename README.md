@@ -1,10 +1,10 @@
-# GreenMoon — Frontend
+# Sketch — Frontend
 
-Frontend for **GreenMoon**, a simple ERC20 launchpad on **Robinhood Chain**.
+Frontend for **Sketch**, a simple ERC20 launchpad on **Robinhood Chain**.
 Launch a token in under a minute: fixed 1B supply, no presales, no bonding
 curves — every token launches straight onto Uniswap V3 and trades immediately.
 
-Built from `GreenMoon_Launchpad_V1_Requirements.docx`.
+Built from `Sketch_Launchpad_V1_Requirements.docx`.
 
 ## Stack
 
@@ -31,7 +31,7 @@ Copy `.env.example` to `.env.local` and fill in:
 | --- | --- |
 | `NEXT_PUBLIC_CHAIN_ID` / `NEXT_PUBLIC_RPC_URL` / `NEXT_PUBLIC_EXPLORER_URL` | Robinhood Chain params (placeholders until public values are announced) |
 | `NEXT_PUBLIC_GECKO_NETWORK` | GeckoTerminal network slug — enables embedded pool charts on token pages |
-| `NEXT_PUBLIC_API_URL` | GreenMoon indexer/REST API |
+| `NEXT_PUBLIC_API_URL` | Sketch indexer/REST API |
 
 ## Going live checklist
 

@@ -7,9 +7,9 @@ import { CREATOR_FEE_PCT, PLATFORM_FEE_PCT, POOL_FEE } from "@/lib/protocol";
 import { Rocket, BookOpen } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Docs — GreenMoon",
+  title: "Docs — Sketch",
   description:
-    "Everything about launching and trading tokens on GreenMoon: launch mechanics, tokenomics, fees, creator rewards, and Robinhood Chain setup.",
+    "Everything about launching and trading tokens on Sketch: launch mechanics, tokenomics, fees, creator rewards, and Robinhood Chain setup.",
 };
 
 const TOC = [
@@ -37,13 +37,13 @@ export default function DocsPage() {
         <div className="mb-10">
           <div className="inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-xs font-medium text-muted mb-4">
             <BookOpen size={13} className="text-gold" />
-            GreenMoon Documentation
+            Sketch Documentation
           </div>
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight">
-            How GreenMoon <span className="text-gradient-gold">works</span>
+            How Sketch <span className="text-gradient-gold">works</span>
           </h1>
           <p className="text-muted mt-3 max-w-2xl">
-            Everything you need to launch, trade, and earn on GreenMoon — the simple ERC20
+            Everything you need to launch, trade, and earn on Sketch — the simple ERC20
             launchpad on Robinhood Chain. No bonding curves, no graduation, real Uniswap V3
             liquidity from block one.
           </p>
@@ -69,14 +69,14 @@ export default function DocsPage() {
         <div className="min-w-0 space-y-12 [&_h2]:scroll-mt-24">
           <Section id="intro" title="Introduction">
             <p>
-              GreenMoon is a permissionless ERC20 launchpad on{" "}
+              Sketch is a permissionless ERC20 launchpad on{" "}
               <strong>Robinhood Chain</strong>. The goal: let anyone launch a token in under a
               minute without bonding curves, presales, or complicated tokenomics. Every token
               launches directly onto <strong>Uniswap V3</strong> and starts trading immediately.
             </p>
             <p>
               Where bonding-curve launchpads make buyers wait for a &ldquo;graduation&rdquo;
-              threshold before real liquidity exists, GreenMoon seeds a real Uniswap V3 pool in
+              threshold before real liquidity exists, Sketch seeds a real Uniswap V3 pool in
               the launch transaction itself. There is no incubation phase, no migration wait, and
               no point where early buyers are stuck in a synthetic market.
             </p>
@@ -92,7 +92,7 @@ export default function DocsPage() {
             <ol>
               <li>
                 <strong>Connect your wallet.</strong> Any EVM wallet works (MetaMask, Rabby,
-                Coinbase Wallet). GreenMoon adds Robinhood Chain to your wallet automatically.
+                Coinbase Wallet). Sketch adds Robinhood Chain to your wallet automatically.
               </li>
               <li>
                 <strong>Fill in the details.</strong> Token name, symbol, logo, and description.
@@ -127,7 +127,7 @@ export default function DocsPage() {
           </Section>
 
           <Section id="tokenomics" title="Tokenomics">
-            <p>Every GreenMoon token follows the same rules. This is a feature, not a limitation —
+            <p>Every Sketch token follows the same rules. This is a feature, not a limitation —
             traders never need to audit supply games:</p>
             <ul>
               <li><strong>Fixed supply:</strong> 1,000,000,000 tokens, minted once at launch</li>
@@ -170,7 +170,7 @@ export default function DocsPage() {
 
           <Section id="fees" title="Fees & Creator Rewards">
             <p>
-              Launching is <strong>free</strong> — you pay only network gas. GreenMoon earns from
+              Launching is <strong>free</strong> — you pay only network gas. Sketch earns from
               trading, and shares that revenue with creators:
             </p>
             <ul>
@@ -178,7 +178,7 @@ export default function DocsPage() {
               <li>LP fees are collected by the protocol (it owns the LP position)</li>
               <li>
                 Fees split automatically: <strong>{CREATOR_FEE_PCT} to the creator</strong>,{" "}
-                <strong>{PLATFORM_FEE_PCT} to the GreenMoon treasury</strong>
+                <strong>{PLATFORM_FEE_PCT} to the Sketch treasury</strong>
               </li>
             </ul>
             <p>
@@ -192,7 +192,7 @@ export default function DocsPage() {
 
           <Section id="staking" title="Stake to Earn">
             <p>
-              GreenMoon rewards are not airdropped automatically — holders{" "}
+              Sketch rewards are not airdropped automatically — holders{" "}
               <strong>stake project tokens to earn tokenized stock rewards</strong>: real
               equities on Robinhood Chain such as AAPL, TSLA, NVDA, MSFT, and SPY.
             </p>
@@ -219,7 +219,7 @@ export default function DocsPage() {
 
           <Section id="network" title="Robinhood Chain Setup">
             <p>
-              GreenMoon runs on Robinhood Chain mainnet. Connecting your wallet on GreenMoon adds
+              Sketch runs on Robinhood Chain mainnet. Connecting your wallet on Sketch adds
               the network automatically; to add it manually:
             </p>
             <div className="not-prose glass rounded-xl overflow-hidden my-4">
@@ -265,7 +265,7 @@ export default function DocsPage() {
           <Section id="security" title="Security">
             <ul>
               <li>
-                <strong>Non-custodial:</strong> GreenMoon never holds your funds. Trades and
+                <strong>Non-custodial:</strong> Sketch never holds your funds. Trades and
                 launches execute directly from your wallet.
               </li>
               <li>
@@ -283,7 +283,7 @@ export default function DocsPage() {
               </li>
             </ul>
             <p>
-              GreenMoon is an independent, community-operated protocol. It is not affiliated with
+              Sketch is an independent, community-operated protocol. It is not affiliated with
               Robinhood Markets, Inc. or any brokerage.
             </p>
           </Section>
@@ -303,7 +303,7 @@ export default function DocsPage() {
 
           <Section id="faq" title="FAQ">
             <Faq q="How much does it cost to launch?">
-              Nothing beyond gas. GreenMoon takes no launch fee — revenue comes from the{" "}
+              Nothing beyond gas. Sketch takes no launch fee — revenue comes from the{" "}
               {POOL_FEE_PCT} pool fee tier, split {CREATOR_FEE_PCT}/{PLATFORM_FEE_PCT} between
               creator and treasury.
             </Faq>

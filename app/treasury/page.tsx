@@ -12,7 +12,7 @@ import { Landmark, TrendingUp, Coins, CalendarClock, ArrowRight } from "lucide-r
 import { Button } from "@/components/ui/Button";
 
 export const metadata = {
-  title: "Treasury — GreenMoon",
+  title: "Treasury — Sketch",
   description: "Protocol treasury stats, asset breakdown, and epoch distribution history.",
 };
 

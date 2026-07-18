@@ -19,7 +19,7 @@ const COLS = [
   },
   {
     title: "Community",
-    links: [{ label: "X (Twitter)", href: "https://x.com/greenmoon" }],
+    links: [{ label: "X (Twitter)", href: "https://x.com/sketch" }],
   },
 ];
 
@@ -31,16 +31,16 @@ export function Footer() {
           <Link href="/" className="flex items-center gap-2">
             <Logo size={28} />
             <span className="font-bold text-lg">
-              GREEN<span className="text-gradient-gold">MOON</span>
+              SKETCH<span className="text-gradient-gold">&nbsp;MONEY</span>
             </span>
           </Link>
           <p className="mt-3 text-sm text-muted max-w-xs">
             Simple ERC20 launchpad on Robinhood Chain. Fixed supply, no presales,
             no bonding curves — straight to Uniswap V3.
           </p>
-          <p className="mt-4 text-xs text-faint">greenmoon.money · Robinhood Chain</p>
+          <p className="mt-4 text-xs text-faint">sketch.money · Robinhood Chain</p>
           <p className="mt-3 text-[11px] leading-relaxed text-faint max-w-xs">
-            GreenMoon is an independent, community-operated protocol. Not affiliated with
+            Sketch is an independent, community-operated protocol. Not affiliated with
             Robinhood Markets, Inc. or any brokerage.
           </p>
         </div>
@@ -62,7 +62,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-faint">
           <span className="flex items-center gap-2">
-            © {new Date().getFullYear()} GreenMoon Protocol. All trades carry risk.
+            © {new Date().getFullYear()} Sketch Protocol. All trades carry risk.
             {!process.env.NEXT_PUBLIC_API_URL && (
               <span className="rounded-full border border-amber/40 text-amber px-2 py-0.5 text-[10px] uppercase tracking-wider">
                 Demo data

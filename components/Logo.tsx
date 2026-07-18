@@ -1,4 +1,4 @@
-/* GreenMoon mark, screen-print style: cream crescent-bow with a
+/* Sketch mark, screen-print style: cream crescent-bow with a
    misregistered emerald print layer and an emerald arrow. */
 export function Logo({ size = 32 }: { size?: number }) {
   return (
