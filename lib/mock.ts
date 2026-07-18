@@ -114,7 +114,7 @@ function buildToken(i: number): Token {
   const holderPct = 100 - burnPct - devPct;
   const freqs = ["20m", "1h", "6h", "24h"] as const;
   const assets = ["ETH", "SAME_TOKEN", "EXTERNAL"] as const;
-  const stocks = ["AMZN", "AAPL", "TSLA", "NVDA", "MSFT", "SPY"] as const;
+  const stocks = ["SPCX", "AAPL", "TSLA", "NVDA", "MSFT", "SPY"] as const;
 
   return {
     address,

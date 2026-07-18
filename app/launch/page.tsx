@@ -178,7 +178,7 @@ export default function LaunchPage() {
     dispatch({ type: "SET_FIELD", field: "sellTax", value: 5 });
     dispatch({ type: "SET_FIELD", field: "buyBeforeLaunch", value: false });
     dispatch({ type: "SET_FIELD", field: "creatorBuyEth", value: 0.5 });
-    dispatch({ type: "SET_FIELD", field: "rewardStock", value: "AMZN" });
+    dispatch({ type: "SET_FIELD", field: "rewardStock", value: "SPCX" });
     dispatch({ type: "SET_FIELD", field: "rewardAllocationPct", value: 5 });
     dispatch({ type: "SET_FIELD", field: "stakingStartDays", value: 0 });
     dispatch({ type: "SET_FIELD", field: "rewardDurationDays", value: 90 });

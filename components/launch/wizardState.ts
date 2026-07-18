@@ -71,7 +71,7 @@ export const DEFAULT_STATE: WizardState = {
   buyTax: 3,
   sellTax: 5,
 
-  rewardStock: "AMZN",
+  rewardStock: "SPCX",
   rewardAllocationPct: 5,
   stakingStartDays: 0,
   rewardDurationDays: 90,
@@ -92,7 +92,7 @@ export const DEFAULT_STATE: WizardState = {
 
 // Tokenized stocks available as staking rewards on Robinhood Chain
 export const TOKENIZED_STOCKS = [
-  { symbol: "AMZN", name: "Amazon" },
+  { symbol: "SPCX", name: "SpaceX" },
   { symbol: "AAPL", name: "Apple" },
   { symbol: "TSLA", name: "Tesla" },
   { symbol: "NVDA", name: "Nvidia" },
