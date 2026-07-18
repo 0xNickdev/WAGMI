@@ -56,7 +56,7 @@ export default function HomePage() {
               Launch tokens, build communities, stake Sketch, and earn tokenized stock rewards.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Button href="/launch" size="lg">
+              <Button href="/app" size="lg">
                 <Rocket size={17} /> Launch App
               </Button>
               <Button href="#ecosystem" variant="outline" size="lg">

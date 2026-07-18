@@ -12,7 +12,7 @@ import { Menu, X, Rocket } from "lucide-react";
 const LINKS = [
   { href: "/explore", label: "Explore" },
   { href: "/stake", label: "Stake & Earn" },
-  { href: "/#how", label: "How It Works" },
+  { href: "/app#how", label: "How It Works" },
   { href: "/docs", label: "Docs" },
 ];
 
